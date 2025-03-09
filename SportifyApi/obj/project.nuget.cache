@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fBzhVSkII8k=",
+  "dgSpecHash": "VUv8reiCG/4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\SportifyApi.csproj",
+  "projectFilePath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\enzod\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.2\\microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
-    "C:\\Users\\enzod\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\dekle\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.2\\microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+    "C:\\Users\\dekle\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }
