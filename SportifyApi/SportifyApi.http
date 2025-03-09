@@ -1,0 +1,6 @@
+@SportifyApi_HostAddress = http://localhost:5174
+
+GET {{SportifyApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
