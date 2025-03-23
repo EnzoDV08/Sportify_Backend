@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "dg3xIoCAqLQ30FP5yX+TeaE+peLlIHNy9Op5b+yVz0s=",
+  "Source": "SportifyApi",
+  "BasePath": "_content/SportifyApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
