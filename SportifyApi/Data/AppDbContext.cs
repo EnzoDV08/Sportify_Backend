@@ -1,19 +1,16 @@
-using System;
 using Microsoft.EntityFrameworkCore;
+using SportifyApi.Models;
 
-
-namespace SportifyApi.Data;
-
-public class AppDbContext : DbContext
+namespace SportifyApi.Data
 {
-    // constructor - use all the base context options for our db context
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
-
-    // TODO: add all my other tables here too.
-       //override the on model creating method
-    // this is where we specify the relationships between our DB
+        public DbSet<User> Users { get; set; }
+    }
 }
+
 
 // STEPS TO CREATE A TABLE IN MY DB:
 // 1. Create a model to represent the structure/columns of your table
