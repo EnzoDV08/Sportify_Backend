@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\SportifyApi.csproj": {}
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\SportifyApi.csproj": {
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\SportifyApi.csproj",
+        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\enzod\\Desktop\\Sportify\\SportifyApi\\obj\\",
+        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
