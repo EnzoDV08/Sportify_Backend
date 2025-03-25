@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\SportifyApi.csproj",
         "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
-        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\obj\\",
+        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
