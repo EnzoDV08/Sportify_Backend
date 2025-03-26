@@ -1,11 +1,13 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using SportifyApi.DTOs;
 
 namespace SportifyApi.Interfaces
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class IUserService : ControllerBase
+    public interface IUserService
     {
+        Task<IEnumerable<UserDto>> GetAllUsersAsync();
+        Task<UserDto?> GetUserByIdAsync(int id);
+        Task<UserDto> CreateUserAsync(UserDto userDto, string password);
+        Task<bool> UpdateUserAsync(int id, UserDto updatedUser);
+        Task<bool> DeleteUserAsync(int id);
     }
 }

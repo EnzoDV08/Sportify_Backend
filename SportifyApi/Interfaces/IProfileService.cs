@@ -1,11 +1,13 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using SportifyApi.DTOs;
 
 namespace SportifyApi.Interfaces
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class IProfileService : ControllerBase
+    public interface IProfileService
     {
+        Task<IEnumerable<ProfileDto>> GetAllProfilesAsync();
+        Task<ProfileDto?> GetProfileByIdAsync(int userId);
+        Task<ProfileDto> CreateProfileAsync(ProfileDto profileDto);
+        Task<bool> UpdateProfileAsync(int userId, ProfileDto updatedProfile);
+        Task<bool> DeleteProfileAsync(int userId);
     }
 }

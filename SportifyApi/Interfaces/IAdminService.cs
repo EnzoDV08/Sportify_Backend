@@ -1,11 +1,13 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using SportifyApi.DTOs;
 
 namespace SportifyApi.Interfaces
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class IAdminService : ControllerBase
+    public interface IAdminService
     {
+        Task<IEnumerable<AdminDto>> GetAllAdminsAsync();
+        Task<AdminDto?> GetAdminByIdAsync(int id);
+        Task<AdminDto> CreateAdminAsync(AdminDto adminDto);
+        Task<bool> UpdateAdminAsync(int id, AdminDto updatedAdmin);
+        Task<bool> DeleteAdminAsync(int id);
     }
 }
