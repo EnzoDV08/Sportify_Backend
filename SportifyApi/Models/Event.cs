@@ -8,18 +8,23 @@ namespace SportifyApi.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Column("event_id")]
+        public int EventId { get; set; }
 
         [Required]
         [StringLength(100)]
         public string Title { get; set; } = string.Empty;
-
-        public string Description { get; set; } = string.Empty;
 
         [Required]
         public DateTime Date { get; set; }
 
         [StringLength(200)]
         public string Location { get; set; } = string.Empty;
+
+        public string? Type { get; set; }
+
+        public string? Visibility { get; set; }
+
+        public string? Status { get; set; }
     }
 }

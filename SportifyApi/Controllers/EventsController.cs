@@ -21,7 +21,8 @@ namespace SportifyApi.Controllers
         {
             _context.Events.Add(newEvent);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetEventById), new { id = newEvent.Id }, newEvent);
+            return CreatedAtAction(nameof(GetEventById), new { id = newEvent.EventId }, newEvent);
+
         }
 
         [HttpGet("{id}")]

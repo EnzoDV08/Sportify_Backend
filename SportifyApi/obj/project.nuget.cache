@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J0h+ezbITwY=",
+  "dgSpecHash": "B5gt5P5Qu64=",
   "success": true,
-  "projectFilePath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyAPi\\SportifyApi.csproj",
+  "projectFilePath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bezui\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\bezui\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
