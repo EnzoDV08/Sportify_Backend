@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using SportifyApi.DTOs;
-using SportifyApi.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using SportifyApi.Data;
+using SportifyApi.Models;
 
 namespace SportifyApi.Controllers
 {
@@ -8,47 +9,67 @@ namespace SportifyApi.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly AppDbContext _context;
 
-        public UsersController(IUserService userService)
+        public UsersController(AppDbContext context)
         {
-            _userService = userService;
+            _context = context;
         }
 
+        // GET: api/users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return Ok(await _userService.GetAllUsersAsync());
+            return await _context.Users.ToListAsync();
         }
 
+        // GET: api/users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _userService.GetUserByIdAsync(id);
-            if (user == null) return NotFound();
+            var user = await _context.Users.FindAsync(id);
 
-            return Ok(user);
+            if (user == null)
+                return NotFound();
+
+            return user;
         }
 
+        // POST: api/users
         [HttpPost]
-        public async Task<ActionResult<UserDto>> CreateUser([FromBody] UserDto userDto)
+        public async Task<ActionResult<User>> CreateUser(User user)
         {
-            var result = await _userService.CreateUserAsync(userDto, password: "default123"); // replace with actual password logic later
-            return CreatedAtAction(nameof(GetUser), new { id = result.UserId }, result);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
         }
 
+        // PUT: api/users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto updatedUser)
+        public async Task<IActionResult> UpdateUser(int id, User updatedUser)
         {
-            var success = await _userService.UpdateUserAsync(id, updatedUser);
-            return success ? NoContent() : NotFound();
+            if (id != updatedUser.UserId)
+                return BadRequest();
+
+            _context.Entry(updatedUser).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
+        // DELETE: api/users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var success = await _userService.DeleteUserAsync(id);
-            return success ? NoContent() : NotFound();
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
