@@ -1,58 +1,52 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using SportifyApi.Data;
+using SportifyApi.Services;
+using SportifyApi.Interfaces;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//add the service we created to our project's builder
-builder.Services.AddOpenApi();
+// ✅ 1. Load environment variables from .env
+Env.Load();
 
+// ✅ 2. Get Aiven PostgreSQL connection details
+var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
+var port = Environment.GetEnvironmentVariable("AIVEN_PORT");
+var database = Environment.GetEnvironmentVariable("AIVEN_DATABASE");
+var username = Environment.GetEnvironmentVariable("AIVEN_USERNAME");
+var password = Environment.GetEnvironmentVariable("AIVEN_PASSWORD");
+var sslmode = Environment.GetEnvironmentVariable("AIVEN_SSLMODE");
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database) ||
+    string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+{
+    throw new Exception("Missing one or more required Aiven environment variables.");
+}
+
+var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
+
+// ✅ 3. Register Services
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Connection to my db config
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
+// ✅ 4. Register custom services (dependency injection)
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+
+// ✅ 5. Build & run the app
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
 app.MapControllers();
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

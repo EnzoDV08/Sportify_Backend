@@ -1,18 +1,32 @@
-using System;
 using Microsoft.EntityFrameworkCore;
+using SportifyApi.Models;
 
-
-namespace SportifyApi.Data;
-
-public class AppDbContext : DbContext
+namespace SportifyApi.Data
 {
-    // constructor - use all the base context options for our db context
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
-    // TODO: add all my other tables here too.
-       //override the on model creating method
-    // this is where we specify the relationships between our DB
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Profile: Primary key is also foreign key (1-to-1 with User)
+            modelBuilder.Entity<Profile>()
+                .HasKey(p => p.UserId);
+
+            // Admin → User (many-to-one or one-to-one depending on design)
+            modelBuilder.Entity<Admin>()
+                .HasOne(a => a.User)
+                .WithMany() // or WithOne() if strictly 1-to-1
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
 }
 
 // STEPS TO CREATE A TABLE IN MY DB:

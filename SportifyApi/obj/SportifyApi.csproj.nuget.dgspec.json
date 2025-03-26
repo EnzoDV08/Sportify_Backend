@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyApi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyApi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyApi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-        "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
-        "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\",
+        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyApi\\SportifyApi.csproj",
+        "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -44,6 +44,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.2, )"
