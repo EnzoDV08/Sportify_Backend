@@ -39,6 +39,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IEventParticipantService, EventParticipantService>();
+
 
 // ✅ 5. Build & run the app
 var app = builder.Build();

@@ -15,7 +15,7 @@ namespace SportifyApi.Services
             _context = context;
         }
 
-        public async Task<Event> CreateEventAsync(EventDto eventDto)
+        public async Task<Event> CreateEventAsync(EventDto eventDto, int creatorUserId)
         {
             var newEvent = new Event
             {
@@ -24,13 +24,15 @@ namespace SportifyApi.Services
                 Location = eventDto.Location,
                 Type = eventDto.Type,
                 Visibility = eventDto.Visibility,
-                Status = eventDto.Status
+                Status = eventDto.Status,
+                CreatorUserId = creatorUserId
             };
 
             _context.Events.Add(newEvent);
             await _context.SaveChangesAsync();
             return newEvent;
         }
+
         public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
         {
             var existingEvent = await _context.Events.FindAsync(id);
