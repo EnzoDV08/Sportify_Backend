@@ -18,9 +18,9 @@ namespace SportifyApi.Controllers
 
         // ✅ Create a new event
         [HttpPost]
-        public async Task<ActionResult<Event>> CreateEvent(EventDto eventDto, int creatorUserId)
+        public async Task<ActionResult<Event>> CreateEvent([FromBody] EventDto eventDto, [FromQuery] int userId)
         {
-            var createdEvent = await _eventService.CreateEventAsync(eventDto, creatorUserId);
+            var createdEvent = await _eventService.CreateEventAsync(eventDto, userId);  // Use userId from the query parameter
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 

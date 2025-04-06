@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SportifyApi.Controllers
 {
@@ -15,45 +17,44 @@ namespace SportifyApi.Controllers
             _eventParticipantService = eventParticipantService;
         }
 
-        // ✅ User requests to join an event
-        [HttpPost("join")]
+        // POST: api/EventParticipants/JoinEvent
+        [HttpPost("JoinEvent")]
         public async Task<IActionResult> JoinEvent(int eventId, int userId)
         {
-            var result = await _eventParticipantService.JoinEventAsync(eventId, userId);
-            if (!result)
-                return BadRequest("You have already requested to join this event.");
-
-            return Ok("Join request sent successfully.");
+            var success = await _eventParticipantService.JoinEventAsync(eventId, userId);
+            if (success)
+                return Ok("Successfully joined the event.");
+            return BadRequest("Failed to join the event.");
         }
 
-        // ✅ Event creator gets all pending join requests
-        [HttpGet("pending")]
-        public async Task<IActionResult> GetPendingRequests([FromQuery] int creatorUserId)
+        // GET: api/EventParticipants/PendingRequests/{adminId}
+        [HttpGet("PendingRequests/{adminId}")]
+        public async Task<IActionResult> GetPendingRequests(int adminId)
         {
-            var requests = await _eventParticipantService.GetPendingRequestsForCreator(creatorUserId);
-            return Ok(requests);
+            var requests = await _eventParticipantService.GetPendingRequestsForAdmin(adminId);
+            if (requests != null)
+                return Ok(requests);
+            return NotFound("No pending requests found.");
         }
 
-        // ✅ Event creator approves a join request
-        [HttpPut("approve")]
-        public async Task<IActionResult> ApproveRequest(int eventId, int userId, int creatorUserId)
+        // POST: api/EventParticipants/ApproveRequest
+        [HttpPost("ApproveRequest")]
+        public async Task<IActionResult> ApproveRequest(int eventId, int userId, int adminId)
         {
-            var result = await _eventParticipantService.ApproveRequestAsync(eventId, userId, creatorUserId);
-            if (!result)
-                return BadRequest("You are not authorized to approve this request or it doesn't exist.");
-
-            return Ok("Join request approved.");
+            var success = await _eventParticipantService.ApproveRequestAsync(eventId, userId, adminId);
+            if (success)
+                return Ok("Request approved.");
+            return BadRequest("Failed to approve the request.");
         }
 
-        // ✅ Event creator rejects a join request
-        [HttpPut("reject")]
-        public async Task<IActionResult> RejectRequest(int eventId, int userId, int creatorUserId)
+        // POST: api/EventParticipants/RejectRequest
+        [HttpPost("RejectRequest")]
+        public async Task<IActionResult> RejectRequest(int eventId, int userId, int adminId)
         {
-            var result = await _eventParticipantService.RejectRequestAsync(eventId, userId, creatorUserId);
-            if (!result)
-                return BadRequest("You are not authorized to reject this request or it doesn't exist.");
-
-            return Ok("Join request rejected.");
+            var success = await _eventParticipantService.RejectRequestAsync(eventId, userId, adminId);
+            if (success)
+                return Ok("Request rejected.");
+            return BadRequest("Failed to reject the request.");
         }
     }
 }

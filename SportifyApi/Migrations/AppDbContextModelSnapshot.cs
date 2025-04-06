@@ -49,7 +49,7 @@ namespace SportifyApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("SportifyApi.Models.Event", b =>
@@ -60,6 +60,9 @@ namespace SportifyApi.Migrations
                         .HasColumnName("event_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventId"));
+
+                    b.Property<int>("AdminId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("integer");
@@ -88,16 +91,19 @@ namespace SportifyApi.Migrations
 
                     b.HasKey("EventId");
 
+                    b.HasIndex("AdminId");
+
                     b.HasIndex("CreatorUserId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("SportifyApi.Models.EventParticipant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("event_participant_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
@@ -106,7 +112,8 @@ namespace SportifyApi.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -117,7 +124,7 @@ namespace SportifyApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventParticipants");
+                    b.ToTable("EventParticipants", (string)null);
                 });
 
             modelBuilder.Entity("SportifyApi.Models.Profile", b =>
@@ -154,7 +161,7 @@ namespace SportifyApi.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profiles", (string)null);
                 });
 
             modelBuilder.Entity("SportifyApi.Models.User", b =>
@@ -188,7 +195,7 @@ namespace SportifyApi.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("SportifyApi.Models.Admin", b =>
@@ -204,11 +211,19 @@ namespace SportifyApi.Migrations
 
             modelBuilder.Entity("SportifyApi.Models.Event", b =>
                 {
+                    b.HasOne("SportifyApi.Models.Admin", "Admin")
+                        .WithMany()
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SportifyApi.Models.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Admin");
 
                     b.Navigation("Creator");
                 });

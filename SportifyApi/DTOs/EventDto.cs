@@ -8,5 +8,6 @@ namespace SportifyApi.Dtos
         public string? Type { get; set; }
         public string? Visibility { get; set; }
         public string? Status { get; set; }
+        public int UserId { get; set; }
     }
 }

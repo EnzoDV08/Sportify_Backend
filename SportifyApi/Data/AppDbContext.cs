@@ -12,6 +12,7 @@ namespace SportifyApi.Data
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,18 @@ namespace SportifyApi.Data
                 .HasOne(a => a.User)
                 .WithMany() // or WithOne() if strictly 1-to-1
                 .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.Event)
+                .WithMany()
+                .HasForeignKey(ep => ep.EventId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<EventParticipant>()
+                .HasOne(ep => ep.User)
+                .WithMany()
+                .HasForeignKey(ep => ep.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

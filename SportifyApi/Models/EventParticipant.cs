@@ -6,21 +6,22 @@ namespace SportifyApi.Models
     public class EventParticipant
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("event_participant_id")]
         public int Id { get; set; }
 
         [Required]
         public int EventId { get; set; }
 
-        [ForeignKey("EventId")]
-        public Event? Event { get; set; }
-
         [Required]
         public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
-
         [Required]
-        public string Status { get; set; } = "Pending"; 
+        [MaxLength(50)]
+        public string Status { get; set; } = "Pending";
+
+        // Relationships
+        public Event Event { get; set; }
+        public User User { get; set; }
     }
 }
