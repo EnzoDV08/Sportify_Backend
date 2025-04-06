@@ -1,8 +1,74 @@
+Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+Ignore build results
 bin/
 obj/
 *.dll
 *.exe
-*.pdb
 *.cache
+*.pdb
+out/
+artifacts/
+
+Ignore build log files
 *.log
-*.json
+
+Ignore cache files
+*.cache
+
+Ignore temp, backup, and system files
+*.tmp
+*.bak
+*.old
+*.swp
+*.DS_Store
+Thumbs.db
+
+Ignore secrets and environment configuration
+.env
+secrets.json
+
+================================
+💡 IDE-specific Ignore Settings
+================================
+Visual Studio
+.vs/
+
+Rider
+.idea/
+
+VS Code
+.vscode/
+
+================================
+💡 NuGet Packages
+================================
+packages/
+*.nupkg
+.snupkg
+
+================================
+💡 Entity Framework
+================================
+Optional: ignore if you
+don't* want to track EF migrations
+(Uncomment the line below ONLY if your team regenerates them manually)
+Migrations/
+EF design-time artifacts
+_dump/
+*.dacpac
+
+================================
+💡 dotnet-specific files
+================================
+project.lock.json
+project.fragment.lock.json
+
+Auto-generated EF files
+Generated_Code/
+*.g.cs
+*.g.i.cs
