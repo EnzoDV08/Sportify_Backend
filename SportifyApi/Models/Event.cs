@@ -27,6 +27,12 @@ namespace SportifyApi.Models
         [Required]
         public int CreatorUserId { get; set; }
 
+        [Required]
+        public int AdminId { get; set; }  // ✅ VERY IMPORTANT NEW
+
+        [ForeignKey("AdminId")]
+        public Admin? Admin { get; set; }
+
         [ForeignKey("CreatorUserId")]
         public User? Creator { get; set; }
     }

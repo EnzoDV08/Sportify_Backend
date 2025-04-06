@@ -20,12 +20,13 @@ namespace SportifyApi.Services
             var newEvent = new Event
             {
                 Title = eventDto.Title,
-                Date = eventDto.Date,
+                Date = eventDto.Date.ToUniversalTime(), 
                 Location = eventDto.Location,
                 Type = eventDto.Type,
                 Visibility = eventDto.Visibility,
                 Status = eventDto.Status,
-                CreatorUserId = creatorUserId
+                CreatorUserId = creatorUserId,
+                AdminId = creatorUserId
             };
 
             _context.Events.Add(newEvent);
