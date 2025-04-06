@@ -16,50 +16,51 @@ namespace SportifyApi.Controllers
             _eventService = eventService;
         }
 
-        // POST: api/Events
+        // ✅ Create a new event
         [HttpPost]
-        public async Task<ActionResult<Event>> CreateEvent(EventDto eventDto)
+        public async Task<ActionResult<Event>> CreateEvent(EventDto eventDto, int creatorUserId)
         {
-            var createdEvent = await _eventService.CreateEventAsync(eventDto);
+            var createdEvent = await _eventService.CreateEventAsync(eventDto, creatorUserId);
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 
-        // GET: api/Events/{id}
+        // ✅ Get a specific event by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEventById(int id)
         {
             var evnt = await _eventService.GetEventByIdAsync(id);
             if (evnt == null)
-                return NotFound();
+                return NotFound("Event not found.");
 
             return Ok(evnt);
         }
 
-        // GET: api/Events
+        // ✅ Get all events
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {
             var events = await _eventService.GetAllEventsAsync();
             return Ok(events);
         }
-        // PUT api/Events/
+
+        // ✅ Update event
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, EventDto updatedEvent)
         {
             var result = await _eventService.UpdateEventAsync(id, updatedEvent);
             if (result == null)
-                return NotFound();
+                return NotFound("Event not found.");
 
             return Ok(result);
         }
 
-        // DELETE: api/Events/{id}
+        // ✅ Delete event
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
             var deleted = await _eventService.DeleteEventAsync(id);
             if (!deleted)
-                return NotFound();
+                return NotFound("Event not found.");
 
             return NoContent();
         }

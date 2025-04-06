@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,9 +21,13 @@ namespace SportifyApi.Models
         public string Location { get; set; } = string.Empty;
 
         public string? Type { get; set; }
-
         public string? Visibility { get; set; }
-
         public string? Status { get; set; }
+
+        [Required]
+        public int CreatorUserId { get; set; }
+
+        [ForeignKey("CreatorUserId")]
+        public User? Creator { get; set; }
     }
 }

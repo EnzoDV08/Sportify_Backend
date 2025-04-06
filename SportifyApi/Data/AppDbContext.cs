@@ -11,6 +11,7 @@ namespace SportifyApi.Data
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<EventParticipant> EventParticipants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
