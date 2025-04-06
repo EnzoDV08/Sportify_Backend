@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SportifyApi.Dtos;
+using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
 
@@ -63,6 +63,18 @@ namespace SportifyApi.Controllers
                 return NotFound("Event not found.");
 
             return NoContent();
+        }
+
+        // ✅ NEW ENDPOINT: Get event with participants and admin
+        // GET: api/events/{id}/details
+        [HttpGet("{id}/details")]
+        public async Task<ActionResult<EventWithParticipantsDto>> GetEventWithParticipants(int id)
+        {
+            var evnt = await _eventService.GetEventWithParticipantsAsync(id);
+            if (evnt == null)
+                return NotFound("Event not found.");
+
+            return Ok(evnt);
         }
     }
 }

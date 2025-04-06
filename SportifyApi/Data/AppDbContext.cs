@@ -27,6 +27,13 @@ namespace SportifyApi.Data
                 .WithMany() // or WithOne() if strictly 1-to-1
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Event>()
+                .HasOne(e => e.Creator)
+                .WithMany(u => u.CreatedEvents)
+                .HasForeignKey(e => e.CreatorUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

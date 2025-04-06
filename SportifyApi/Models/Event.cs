@@ -29,5 +29,7 @@ namespace SportifyApi.Models
 
         [ForeignKey("CreatorUserId")]
         public User? Creator { get; set; }
+
+        public ICollection<EventParticipant> Participants { get; set; }
     }
 }

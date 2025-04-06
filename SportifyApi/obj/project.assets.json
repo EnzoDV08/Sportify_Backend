@@ -12465,19 +12465,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bezui\\.nuget\\packages\\": {}
+    "C:\\Users\\Jakes\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
       "projectName": "SportifyApi",
-      "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-      "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
-      "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\obj\\",
+      "projectPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+      "packagesPath": "C:\\Users\\Jakes\\.nuget\\packages\\",
+      "outputPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Jakes\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

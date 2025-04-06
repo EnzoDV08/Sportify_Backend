@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SportifyApi.Data;
-using SportifyApi.Dtos;
+using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
 
@@ -69,6 +69,39 @@ namespace SportifyApi.Services
             _context.Events.Remove(evnt);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        // 🆕 NEW: Fetch event with admin and participants
+        public async Task<EventWithParticipantsDto?> GetEventWithParticipantsAsync(int id)
+        {
+            var evnt = await _context.Events
+                .Include(e => e.Creator)
+                .Include(e => e.Participants)
+                    .ThenInclude(ep => ep.User)
+                .FirstOrDefaultAsync(e => e.EventId == id);
+
+            if (evnt == null) return null;
+
+            return new EventWithParticipantsDto
+            {
+                EventId = evnt.EventId,
+                Title = evnt.Title,
+                Date = evnt.Date,
+                Location = evnt.Location,
+                EventAdmin = new UserDto
+                {
+                    UserId = evnt.Creator!.UserId,
+                    Name = evnt.Creator!.Name,
+                    Email = evnt.Creator!.Email
+                },
+                Participants = evnt.Participants.Select(p => new EventParticipantDto
+                {
+                    UserId = p.User!.UserId,
+                    Name = p.User!.Name,
+                    Email = p.User!.Email,
+                    Status = p.Status
+                }).ToList()
+            };
         }
     }
 }

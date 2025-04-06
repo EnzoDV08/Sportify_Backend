@@ -1,4 +1,4 @@
-namespace SportifyApi.Dtos
+namespace SportifyApi.DTOs
 {
     public class EventDto
     {

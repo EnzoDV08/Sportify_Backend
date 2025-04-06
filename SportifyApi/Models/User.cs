@@ -26,5 +26,9 @@ namespace SportifyApi.Models
         [Required]
         [Column("user_type")]
         public string UserType { get; set; } = "user"; // user, admin, creator
+
+        public ICollection<Event> CreatedEvents { get; set; } = new List<Event>();
+
+        public ICollection<EventParticipant> EventParticipants { get; set; } = new List<EventParticipant>();
     }
 }
