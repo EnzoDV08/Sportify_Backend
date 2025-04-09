@@ -12465,19 +12465,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\enzod\\.nuget\\packages\\": {}
+    "C:\\Users\\dekle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+      "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
       "projectName": "SportifyApi",
-      "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-      "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\obj\\",
+      "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+      "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
+      "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -12570,13 +12570,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
