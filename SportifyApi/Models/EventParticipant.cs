@@ -21,7 +21,7 @@ namespace SportifyApi.Models
         public string Status { get; set; } = "Pending";
 
         // Relationships
-        public Event Event { get; set; }
-        public User User { get; set; }
+       public Event? Event { get; set; }
+       public User? User { get; set; }
     }
 }

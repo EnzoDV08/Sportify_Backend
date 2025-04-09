@@ -11,19 +11,31 @@ namespace SportifyApi.Controllers
     public class EventParticipantsController : ControllerBase
     {
         private readonly IEventParticipantService _eventParticipantService;
+        private readonly IAchievementService _achievementService;
 
-        public EventParticipantsController(IEventParticipantService eventParticipantService)
+        // ✅ Inject both services
+        public EventParticipantsController(
+            IEventParticipantService eventParticipantService,
+            IAchievementService achievementService)
         {
             _eventParticipantService = eventParticipantService;
+            _achievementService = achievementService;
         }
 
-        // POST: api/EventParticipants/JoinEvent
+        // ✅ POST: api/EventParticipants/JoinEvent
         [HttpPost("JoinEvent")]
         public async Task<IActionResult> JoinEvent(int eventId, int userId)
         {
             var success = await _eventParticipantService.JoinEventAsync(eventId, userId);
+            
             if (success)
-                return Ok("Successfully joined the event.");
+            {
+                // ✅ After joining, check for auto achievements
+                await _achievementService.CheckAutoAchievementsAsync(userId);
+
+                return Ok("Successfully joined the event. Achievement check completed.");
+            }
+
             return BadRequest("Failed to join the event.");
         }
 
