@@ -7,8 +7,8 @@ namespace SportifyApi.Interfaces
     public interface IEventParticipantService
     {
         Task<bool> JoinEventAsync(int eventId, int userId);
-        Task<List<EventParticipant>> GetPendingRequestsForAdmin(int adminId);
-        Task<bool> ApproveRequestAsync(int eventId, int userId, int adminId);
-        Task<bool> RejectRequestAsync(int eventId, int userId, int adminId);
+        Task<List<EventParticipant>> GetPendingRequestsAsync(int userId); 
+        Task<bool> ApproveRequestAsync(int eventId, int userId, int approverUserId);
+        Task<bool> RejectRequestAsync(int eventId, int userId, int approverUserId);
     }
 }

@@ -41,35 +41,36 @@ namespace SportifyApi.Controllers
 
         // GET: api/EventParticipants/PendingRequests/{adminId}
         
-        [HttpGet("PendingRequests/{adminId}")]
-        public async Task<IActionResult> GetPendingRequests(int adminId)
+        [HttpGet("PendingRequests/{userId}")]
+        public async Task<IActionResult> GetPendingRequests(int userId)
         {
-            var requests = await _eventParticipantService.GetPendingRequestsForAdmin(adminId);
-            if (requests != null)
+            var requests = await _eventParticipantService.GetPendingRequestsAsync(userId);
+            if (requests != null && requests.Any())
                 return Ok(requests);
             return NotFound("No pending requests found.");
+            
         }
-
+        
         // POST: api/EventParticipants/ApproveRequest
-      
+            
         [HttpPost("ApproveRequest")]
-        public async Task<IActionResult> ApproveRequest(int eventId, int userId, int adminId)
+        public async Task<IActionResult> ApproveRequest(int eventId, int userId, int approverUserId)
         {
-            var success = await _eventParticipantService.ApproveRequestAsync(eventId, userId, adminId);
+            var success = await _eventParticipantService.ApproveRequestAsync(eventId, userId, approverUserId);
             if (success)
                 return Ok("Request approved.");
-            return BadRequest("Failed to approve the request.");
+            return BadRequest("Failed to approve request.");
         }
 
         // POST: api/EventParticipants/RejectRequest
         
         [HttpPost("RejectRequest")]
-        public async Task<IActionResult> RejectRequest(int eventId, int userId, int adminId)
+        public async Task<IActionResult> RejectRequest(int eventId, int userId, int approverUserId)
         {
-            var success = await _eventParticipantService.RejectRequestAsync(eventId, userId, adminId);
+            var success = await _eventParticipantService.RejectRequestAsync(eventId, userId, approverUserId);
             if (success)
                 return Ok("Request rejected.");
-            return BadRequest("Failed to reject the request.");
+            return BadRequest("Failed to reject request.");
         }
     }
 }

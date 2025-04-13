@@ -37,21 +37,40 @@ namespace SportifyApi.Services
             return true;
         }
 
-        // Get pending requests for admin
-        public async Task<List<EventParticipant>> GetPendingRequestsForAdmin(int adminId)
+        // Get pending requests for UserID and AdminID
+        public async Task<List<EventParticipant>> GetPendingRequestsAsync(int userId)
         {
-            return await _context.EventParticipants
-                .Where(p => p.Status == "Pending" && p.Event != null && p.Event.CreatorUserId == adminId)
-                .Include(p => p.User)
-                .Include(p => p.Event)
-                .ToListAsync();
+            var isAdmin = await _context.Admins.AnyAsync(a => a.UserId == userId);
+
+            if (isAdmin)
+            {
+                return await _context.EventParticipants
+                    .Where(p => p.Status == "Pending")
+                    .Include(p => p.User)
+                    .Include(p => p.Event)
+                    .ToListAsync();
+            }
+            else
+            {
+                return await _context.EventParticipants
+                    .Where(p => p.Status == "Pending" && p.Event.CreatorUserId == userId)
+                    .Include(p => p.User)
+                    .Include(p => p.Event)
+                    .ToListAsync();
+            }
         }
 
+
         // Approve request
-        public async Task<bool> ApproveRequestAsync(int eventId, int userId, int adminId)
+        public async Task<bool> ApproveRequestAsync(int eventId, int userId, int approverUserId)
         {
             var evnt = await _context.Events.FindAsync(eventId);
-            if (evnt == null || evnt.AdminId != adminId)
+            if (evnt == null)
+                return false;
+
+            var isAdmin = await _context.Admins.AnyAsync(a => a.UserId == approverUserId);
+
+            if (!isAdmin && evnt.CreatorUserId != approverUserId)
                 return false;
 
             var request = await _context.EventParticipants
@@ -65,12 +84,18 @@ namespace SportifyApi.Services
             return true;
         }
 
+
         // Reject request
-        public async Task<bool> RejectRequestAsync(int eventId, int userId, int adminId)
+        public async Task<bool> RejectRequestAsync(int eventId, int userId, int approverUserId)
         {
             var evnt = await _context.Events.FindAsync(eventId);
-            if (evnt == null || evnt.AdminId != adminId)
+            if (evnt == null)
                 return false;
+
+            var isAdmin = await _context.Admins.AnyAsync(a => a.UserId == approverUserId);
+
+            if (!isAdmin && evnt.CreatorUserId != approverUserId)
+                return false; 
 
             var request = await _context.EventParticipants
                 .FirstOrDefaultAsync(ep => ep.EventId == eventId && ep.UserId == userId);
@@ -82,5 +107,6 @@ namespace SportifyApi.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
     }
 }
