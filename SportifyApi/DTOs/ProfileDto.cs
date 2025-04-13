@@ -7,5 +7,6 @@ namespace SportifyApi.DTOs
         public string Email { get; set; } = string.Empty;
         public string? ProfilePicture { get; set; }
         public string? Description { get; set; }
-    }
+        public List<AchievementDto> Achievements { get; set; } = new();
+   }
 }

@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SportifyApi.Interfaces;
-using SportifyApi.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace SportifyApi.Controllers
 {
@@ -23,6 +21,7 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ POST: api/EventParticipants/JoinEvent
+        
         [HttpPost("JoinEvent")]
         public async Task<IActionResult> JoinEvent(int eventId, int userId)
         {
@@ -31,6 +30,7 @@ namespace SportifyApi.Controllers
             if (success)
             {
                 // ✅ After joining, check for auto achievements
+                
                 await _achievementService.CheckAutoAchievementsAsync(userId);
 
                 return Ok("Successfully joined the event. Achievement check completed.");
@@ -40,6 +40,7 @@ namespace SportifyApi.Controllers
         }
 
         // GET: api/EventParticipants/PendingRequests/{adminId}
+        
         [HttpGet("PendingRequests/{adminId}")]
         public async Task<IActionResult> GetPendingRequests(int adminId)
         {
@@ -50,6 +51,7 @@ namespace SportifyApi.Controllers
         }
 
         // POST: api/EventParticipants/ApproveRequest
+      
         [HttpPost("ApproveRequest")]
         public async Task<IActionResult> ApproveRequest(int eventId, int userId, int adminId)
         {
@@ -60,6 +62,7 @@ namespace SportifyApi.Controllers
         }
 
         // POST: api/EventParticipants/RejectRequest
+        
         [HttpPost("RejectRequest")]
         public async Task<IActionResult> RejectRequest(int eventId, int userId, int adminId)
         {

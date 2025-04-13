@@ -85,10 +85,10 @@ namespace SportifyApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventId"));
 
-                    b.Property<int>("AdminId")
+                    b.Property<int?>("AdminId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CreatorUserId")
+                    b.Property<int?>("CreatorUserId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Date")
@@ -173,11 +173,6 @@ namespace SportifyApi.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("password");
 
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("text")
@@ -273,15 +268,11 @@ namespace SportifyApi.Migrations
                 {
                     b.HasOne("SportifyApi.Models.Admin", "Admin")
                         .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AdminId");
 
                     b.HasOne("SportifyApi.Models.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatorUserId");
 
                     b.Navigation("Admin");
 

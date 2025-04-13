@@ -23,8 +23,9 @@ namespace SportifyApi.Models
         [Column("password")]
         public string Password { get; set; } = string.Empty;
 
+        
         [Required]
         [Column("user_type")]
-        public string UserType { get; set; } = "user"; // user, admin, creator
+        public string UserType { get; set; } = "user";
     }
 }

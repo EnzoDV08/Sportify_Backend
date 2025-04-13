@@ -41,7 +41,7 @@ namespace SportifyApi.Services
         public async Task<List<EventParticipant>> GetPendingRequestsForAdmin(int adminId)
         {
             return await _context.EventParticipants
-                .Where(p => p.Status == "Pending" && p.Event.CreatorUserId == adminId)
+                .Where(p => p.Status == "Pending" && p.Event != null && p.Event.CreatorUserId == adminId)
                 .Include(p => p.User)
                 .Include(p => p.Event)
                 .ToListAsync();

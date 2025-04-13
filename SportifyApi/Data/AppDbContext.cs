@@ -20,14 +20,14 @@ namespace SportifyApi.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Profile: Primary key is also foreign key (1-to-1 with User)
+           
             modelBuilder.Entity<Profile>()
                 .HasKey(p => p.UserId);
 
-            // Admin → User (many-to-one or one-to-one depending on design)
+            
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.User)
-                .WithMany() // or WithOne() if strictly 1-to-1
+                .WithMany() 
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
