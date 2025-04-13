@@ -12,6 +12,8 @@ namespace SportifyApi.Data
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<UserAchievement> UserAchievements { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +42,28 @@ namespace SportifyApi.Data
                 .WithMany()
                 .HasForeignKey(ep => ep.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(ua => ua.User)
+                .WithMany()
+                .HasForeignKey(ua => ua.UserId);
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(ua => ua.Achievement)
+                .WithMany(a => a.UserAchievements)
+                .HasForeignKey(ua => ua.AchievementId);
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(ua => ua.Event)
+                .WithMany()
+                .HasForeignKey(ua => ua.EventId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne(ua => ua.AwardedByAdmin)
+                .WithMany()
+                .HasForeignKey(ua => ua.AwardedByAdminId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
