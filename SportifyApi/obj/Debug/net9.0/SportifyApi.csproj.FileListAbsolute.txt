@@ -560,3 +560,4 @@ C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi\bin\Debug\net9.0\Do
 C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi\bin\Debug\net9.0\Sprache.dll
 E:\Interactive Development\Year 3\Term 1\Final\Sportify_Backend\SportifyApi\bin\Debug\net9.0\DotNetEnv.dll
 E:\Interactive Development\Year 3\Term 1\Final\Sportify_Backend\SportifyApi\bin\Debug\net9.0\Sprache.dll
+E:\Interactive Development\Year 3\Term 1\Final\Sportify_Backend\SportifyApi\bin\Debug\net9.0\BCrypt.Net-Next.dll

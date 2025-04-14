@@ -17,7 +17,7 @@ namespace SportifyApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.3")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -73,7 +73,7 @@ namespace SportifyApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("SportifyApi.Models.Event", b =>
@@ -119,7 +119,7 @@ namespace SportifyApi.Migrations
 
                     b.HasIndex("CreatorUserId");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("SportifyApi.Models.EventParticipant", b =>
@@ -148,7 +148,7 @@ namespace SportifyApi.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("EventParticipants", (string)null);
+                    b.ToTable("EventParticipants");
                 });
 
             modelBuilder.Entity("SportifyApi.Models.Profile", b =>
@@ -160,32 +160,49 @@ namespace SportifyApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("Description");
+                    b.Property<int?>("Age")
+                        .HasColumnType("integer")
+                        .HasColumnName("Age");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("Availability")
                         .HasColumnType("text")
-                        .HasColumnName("email");
+                        .HasColumnName("Availability");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Bio")
                         .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnName("Bio");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("FavoriteSports")
                         .HasColumnType("text")
-                        .HasColumnName("password");
+                        .HasColumnName("FavoriteSports");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text")
+                        .HasColumnName("Gender");
+
+                    b.Property<string>("Interests")
+                        .HasColumnType("text")
+                        .HasColumnName("Interests");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text")
+                        .HasColumnName("Location");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text")
+                        .HasColumnName("PhoneNumber");
 
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("text")
                         .HasColumnName("ProfilePicture");
 
+                    b.Property<string>("SocialMediaLink")
+                        .HasColumnType("text")
+                        .HasColumnName("SocialMediaLink");
+
                     b.HasKey("UserId");
 
-                    b.ToTable("Profiles", (string)null);
+                    b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("SportifyApi.Models.User", b =>
@@ -219,7 +236,7 @@ namespace SportifyApi.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SportifyApi.Models.UserAchievement", b =>

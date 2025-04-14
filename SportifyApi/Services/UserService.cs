@@ -3,6 +3,7 @@ using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
+using BCrypt.Net; // 👈 Add this at the top
 
 namespace SportifyApi.Services
 {
@@ -46,15 +47,19 @@ namespace SportifyApi.Services
             {
                 Name = userDto.Name,
                 Email = userDto.Email,
-                Password = password // store it securely in future!
+                Password = BCrypt.Net.BCrypt.HashPassword(password),
+                UserType = string.IsNullOrWhiteSpace(userDto.UserType) ? "user" : userDto.UserType
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             userDto.UserId = user.UserId;
+            userDto.UserType = user.UserType; // Return back the actual userType
+
             return userDto;
         }
+
 
         public async Task<bool> UpdateUserAsync(int id, UserDto updatedUser)
         {
