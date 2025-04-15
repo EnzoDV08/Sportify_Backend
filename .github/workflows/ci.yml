@@ -11,21 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
 
-- name: Restore dependencies
-  run: dotnet restore SportifyApi.sln
+      - name: Restore dependencies
+        run: dotnet restore Sportify.sln
 
-- name: Build the backend
-  run: dotnet build SportifyApi.sln --no-restore --configuration Release
+      - name: Build the solution
+        run: dotnet build Sportify.sln --no-restore --configuration Release
 
-- name: Run unit tests
-  run: dotnet test SportifyApi.sln --no-build --configuration Release
-
-
+      - name: Run unit tests
+        run: dotnet test Sportify.sln --no-build --configuration Release
