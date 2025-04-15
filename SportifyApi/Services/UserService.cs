@@ -3,8 +3,7 @@ using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
-using Microsoft.AspNetCore.Identity;
-
+using BCrypt.Net; // 👈 Add this at the top
 
 namespace SportifyApi.Services
 {
@@ -42,55 +41,33 @@ namespace SportifyApi.Services
             };
         }
 
-                public async Task<UserDto> CreateUserAsync(UserDto userDto, string password)
-    {
-        
-        var passwordHasher = new PasswordHasher<User>();
-        var user = new User
+        public async Task<UserDto> CreateUserAsync(UserDto userDto, string password)
         {
-            Name = userDto.Name,
-            Email = userDto.Email,
-            UserType = "user"
-        };
+            var user = new User
+            {
+                Name = userDto.Name,
+                Email = userDto.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(password),
+                UserType = string.IsNullOrWhiteSpace(userDto.UserType) ? "user" : userDto.UserType
+            };
 
-        user.Password = passwordHasher.HashPassword(user, password); 
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+            userDto.UserId = user.UserId;
+            userDto.UserType = user.UserType; // Return back the actual userType
 
-        
-        var profile = new Profile
-        {
-            UserId = user.UserId, 
-            Name = user.Name,
-            Email = user.Email,
-            Description = "New user", 
-            ProfilePicture = "",     
-           
-        };
-
-        _context.Profiles.Add(profile);
-        await _context.SaveChangesAsync();
-
-        userDto.UserId = user.UserId;
-        return userDto;
-    }
-        
+            return userDto;
+        }
 
 
-            public async Task<bool> UpdateUserAsync(int id, UserDto updatedUser)
+        public async Task<bool> UpdateUserAsync(int id, UserDto updatedUser)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return false;
 
             user.Name = updatedUser.Name;
             user.Email = updatedUser.Email;
-
-            if (!string.IsNullOrEmpty(updatedUser.Password))
-            {
-                user.Password = updatedUser.Password; 
-            }
-
             await _context.SaveChangesAsync();
             return true;
         }

@@ -3,10 +3,15 @@ namespace SportifyApi.DTOs
     public class ProfileDto
     {
         public int UserId { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
         public string? ProfilePicture { get; set; }
-        public string? Description { get; set; }
-        public List<AchievementDto> Achievements { get; set; } = new();
-   }
+        public string? Location { get; set; }
+        public string? Interests { get; set; }
+        public string? FavoriteSports { get; set; }
+        public string? Availability { get; set; }
+        public string? Bio { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? SocialMediaLink { get; set; }
+        public string? Gender { get; set; }
+        public int? Age { get; set; }
+    }
 }

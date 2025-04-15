@@ -16,52 +16,48 @@ namespace SportifyApi.Controllers
         }
 
         // GET: api/users
-        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            var users = await _userService.GetAllUsersAsync();
-            return Ok(users);
+            return Ok(await _userService.GetAllUsersAsync());
         }
 
         // GET: api/users/5
-       
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
-            if (user == null) return NotFound();
-            return Ok(user);
+            return user == null ? NotFound() : Ok(user);
         }
 
         // POST: api/users
-        
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
         {
-            string password = userDto.Password ?? "default"; // In production, validate or hash this!
-            var createdUser = await _userService.CreateUserAsync(userDto, password);
+            if (string.IsNullOrWhiteSpace(userDto.Password))
+            {
+                return BadRequest("Password is required.");
+            }
+
+            var createdUser = await _userService.CreateUserAsync(userDto, userDto.Password!); // The `!` tells C# "trust me it's not null"
             return CreatedAtAction(nameof(GetUser), new { id = createdUser.UserId }, createdUser);
         }
 
+
         // PUT: api/users/5
-        
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserDto updatedUser)
         {
             var success = await _userService.UpdateUserAsync(id, updatedUser);
-            if (!success) return NotFound();
-            return NoContent();
+            return success ? NoContent() : NotFound();
         }
 
         // DELETE: api/users/5
-        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var success = await _userService.DeleteUserAsync(id);
-            if (!success) return NotFound();
-            return NoContent();
+            return success ? NoContent() : NotFound();
         }
     }
 }
