@@ -8,11 +8,7 @@ on:
 
 jobs:
   test-backend:
-    name: Run Achievement Unit Tests
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Sportify_Backend
 
     steps:
     - name: Checkout code
@@ -24,10 +20,10 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore SportifyApi/SportifyApi.csproj
 
     - name: Build the backend
-      run: dotnet build SportifyApi.sln --no-restore --configuration Release
+      run: dotnet build SportifyApi/SportifyApi.csproj --no-restore --configuration Release
 
     - name: Run unit tests
       run: dotnet test SportifyApi.Tests/SportifyApi.Tests.csproj --no-build --configuration Release
