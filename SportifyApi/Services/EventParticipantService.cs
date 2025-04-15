@@ -38,27 +38,28 @@ namespace SportifyApi.Services
         }
 
         // Get pending requests for UserID and AdminID
-        public async Task<List<EventParticipant>> GetPendingRequestsAsync(int userId)
-        {
-            var isAdmin = await _context.Admins.AnyAsync(a => a.UserId == userId);
+       public async Task<List<EventParticipant>> GetPendingRequestsAsync(int userId)
+{
+    var isAdmin = await _context.Admins.AnyAsync(a => a.UserId == userId);
 
-            if (isAdmin)
-            {
-                return await _context.EventParticipants
-                    .Where(p => p.Status == "Pending")
-                    .Include(p => p.User)
-                    .Include(p => p.Event)
-                    .ToListAsync();
-            }
-            else
-            {
-                return await _context.EventParticipants
-                    .Where(p => p.Status == "Pending" && p.Event != null && p.Event.CreatorUserId == userId)
-                    .Include(p => p.User)
-                    .Include(p => p.Event)
-                    .ToListAsync();
-            }
-        }
+    if (isAdmin)
+    {
+        return await _context.EventParticipants
+            .Where(p => p.Status == "Pending")
+            .Include(p => p.User)
+            .Include(p => p.Event)
+            .ToListAsync();
+    }
+    else
+    {
+        return await _context.EventParticipants
+            .Include(p => p.User)
+            .Include(p => p.Event)
+            .Where(p => p.Status == "Pending" && p.Event != null && p.Event.CreatorUserId == userId)
+            .ToListAsync();
+    }
+}
+
 
 
         // Approve request
