@@ -10,6 +10,9 @@ jobs:
   test-backend:
     name: Run Achievement Unit Tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Sportify_Backend
 
     steps:
     - name: Checkout code
