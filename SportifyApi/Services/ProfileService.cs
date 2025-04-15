@@ -3,7 +3,7 @@ using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
-using BCrypt.Net; // For password hashing
+using BCrypt.Net; 
 
 namespace SportifyApi.Services
 {

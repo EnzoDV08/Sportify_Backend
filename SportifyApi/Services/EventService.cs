@@ -28,7 +28,8 @@ namespace SportifyApi.Services
         Location = eventDto.Location,
         Type = eventDto.Type,
         Visibility = eventDto.Visibility,
-        Status = eventDto.Status
+        Status = eventDto.Status,
+        CreatorUserId = userId
     };
 
     if (user.UserType == "admin")

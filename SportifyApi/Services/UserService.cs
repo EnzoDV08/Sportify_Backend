@@ -3,7 +3,6 @@ using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
-using BCrypt.Net; // 👈 Add this at the top
 
 namespace SportifyApi.Services
 {
