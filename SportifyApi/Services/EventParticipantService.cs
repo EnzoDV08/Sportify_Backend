@@ -53,7 +53,7 @@ namespace SportifyApi.Services
             else
             {
                 return await _context.EventParticipants
-                    .Where(p => p.Status == "Pending" && p.Event.CreatorUserId == userId)
+                    .Where(p => p.Status == "Pending" && p.Event != null && p.Event.CreatorUserId == userId)
                     .Include(p => p.User)
                     .Include(p => p.Event)
                     .ToListAsync();
