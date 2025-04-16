@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "K04tPL9Yu80=",
+  "dgSpecHash": "Tkh8pdLQNvI=",
   "success": true,
   "projectFilePath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jakes\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Jakes\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\Jakes\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Jakes\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Jakes\\.nuget\\packages\\dotnetenv\\3.1.1\\dotnetenv.3.1.1.nupkg.sha512",
     "C:\\Users\\Jakes\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

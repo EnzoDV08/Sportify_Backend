@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SportifyApi.Data;
-using SportifyApi.DTOs;
+using SportifyApi.Dtos;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
 
@@ -15,23 +15,45 @@ namespace SportifyApi.Services
             _context = context;
         }
 
-        public async Task<Event> CreateEventAsync(EventDto eventDto, int creatorUserId)
-        {
-            var newEvent = new Event
-            {
-                Title = eventDto.Title,
-                Date = eventDto.Date,
-                Location = eventDto.Location,
-                Type = eventDto.Type,
-                Visibility = eventDto.Visibility,
-                Status = eventDto.Status,
-                CreatorUserId = creatorUserId
-            };
+    public async Task<Event> CreateEventAsync(EventDto eventDto, int userId)
+{
+    var user = await _context.Users.FindAsync(userId);
+    if (user == null)
+        throw new Exception("User not found for event creation.");
 
-            _context.Events.Add(newEvent);
-            await _context.SaveChangesAsync();
-            return newEvent;
-        }
+    var newEvent = new Event
+    {
+        Title = eventDto.Title,
+        Date = eventDto.Date.ToUniversalTime(),
+        Location = eventDto.Location,
+        Type = eventDto.Type,
+        Visibility = eventDto.Visibility,
+        Status = eventDto.Status,
+        CreatorUserId = userId
+    };
+
+    if (user.UserType == "admin")
+    {
+        var admin = await _context.Admins.FirstOrDefaultAsync(a => a.UserId == userId);
+        if (admin == null)
+            throw new Exception("Admin not found in Admins table.");
+
+        newEvent.AdminId = admin.AdminId;
+    }
+    else if (user.UserType == "user")
+    {
+        newEvent.CreatorUserId = userId;
+    }
+    else
+    {
+        throw new Exception("Invalid user type.");
+    }
+
+    _context.Events.Add(newEvent);
+    await _context.SaveChangesAsync();
+    return newEvent;
+}
+
 
         public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
         {
@@ -69,39 +91,6 @@ namespace SportifyApi.Services
             _context.Events.Remove(evnt);
             await _context.SaveChangesAsync();
             return true;
-        }
-
-        // 🆕 NEW: Fetch event with admin and participants
-        public async Task<EventWithParticipantsDto?> GetEventWithParticipantsAsync(int id)
-        {
-            var evnt = await _context.Events
-                .Include(e => e.Creator)
-                .Include(e => e.Participants)
-                    .ThenInclude(ep => ep.User)
-                .FirstOrDefaultAsync(e => e.EventId == id);
-
-            if (evnt == null) return null;
-
-            return new EventWithParticipantsDto
-            {
-                EventId = evnt.EventId,
-                Title = evnt.Title,
-                Date = evnt.Date,
-                Location = evnt.Location,
-                EventAdmin = new UserDto
-                {
-                    UserId = evnt.Creator!.UserId,
-                    Name = evnt.Creator!.Name,
-                    Email = evnt.Creator!.Email
-                },
-                Participants = evnt.Participants.Select(p => new EventParticipantDto
-                {
-                    UserId = p.User!.UserId,
-                    Name = p.User!.Name,
-                    Email = p.User!.Email,
-                    Status = p.Status
-                }).ToList()
-            };
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SportifyApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.3")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -129,19 +129,37 @@ namespace SportifyApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("Description");
+                    b.Property<int?>("Age")
+                        .HasColumnType("integer")
+                        .HasColumnName("Age");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("Availability")
                         .HasColumnType("text")
-                        .HasColumnName("email");
+                        .HasColumnName("Availability");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("Bio")
                         .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasColumnName("Bio");
+
+                    b.Property<string>("FavoriteSports")
+                        .HasColumnType("text")
+                        .HasColumnName("FavoriteSports");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text")
+                        .HasColumnName("Gender");
+
+                    b.Property<string>("Interests")
+                        .HasColumnType("text")
+                        .HasColumnName("Interests");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text")
+                        .HasColumnName("Location");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text")
+                        .HasColumnName("PhoneNumber");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -151,6 +169,10 @@ namespace SportifyApi.Migrations
                     b.Property<string>("ProfilePicture")
                         .HasColumnType("text")
                         .HasColumnName("ProfilePicture");
+
+                    b.Property<string>("SocialMediaLink")
+                        .HasColumnType("text")
+                        .HasColumnName("SocialMediaLink");
 
                     b.HasKey("UserId");
 

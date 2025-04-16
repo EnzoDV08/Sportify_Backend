@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SportifyApi.DTOs;
+using SportifyApi.Dtos;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
 
@@ -17,14 +17,15 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ Create a new event
+        // Create a new event
         [HttpPost]
-        public async Task<ActionResult<Event>> CreateEvent(EventDto eventDto, int creatorUserId)
+        public async Task<ActionResult<Event>> CreateEvent([FromBody] EventDto eventDto, [FromQuery] int userId)
         {
-            var createdEvent = await _eventService.CreateEventAsync(eventDto, creatorUserId);
+            var createdEvent = await _eventService.CreateEventAsync(eventDto, userId);  
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 
-        // ✅ Get a specific event by ID
+        // Get a specific event by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEventById(int id)
         {
@@ -35,7 +36,7 @@ namespace SportifyApi.Controllers
             return Ok(evnt);
         }
 
-        // ✅ Get all events
+        // Get all events
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {
@@ -44,6 +45,7 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ Update event
+        //Update event
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, EventDto updatedEvent)
         {
@@ -55,6 +57,7 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ Delete event
+        //Delete event
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
@@ -63,18 +66,6 @@ namespace SportifyApi.Controllers
                 return NotFound("Event not found.");
 
             return NoContent();
-        }
-
-        // ✅ NEW ENDPOINT: Get event with participants and admin
-        // GET: api/events/{id}/details
-        [HttpGet("{id}/details")]
-        public async Task<ActionResult<EventWithParticipantsDto>> GetEventWithParticipants(int id)
-        {
-            var evnt = await _eventService.GetEventWithParticipantsAsync(id);
-            if (evnt == null)
-                return NotFound("Event not found.");
-
-            return Ok(evnt);
         }
     }
 }
