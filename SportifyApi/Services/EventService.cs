@@ -24,6 +24,7 @@ namespace SportifyApi.Services
     var newEvent = new Event
     {
         Title = eventDto.Title,
+        Description = eventDto.Description, 
         Date = eventDto.Date.ToUniversalTime(),
         Location = eventDto.Location,
         Type = eventDto.Type,

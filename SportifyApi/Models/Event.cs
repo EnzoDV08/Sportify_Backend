@@ -14,6 +14,9 @@ namespace SportifyApi.Models
     [StringLength(100)]
     public string Title { get; set; } = string.Empty;
 
+    [StringLength(300)]
+    public string? Description { get; set; }
+
     [Required]
     public DateTime Date { get; set; }
 
