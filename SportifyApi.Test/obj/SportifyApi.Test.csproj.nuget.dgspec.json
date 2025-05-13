@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {}
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {}
   },
   "projects": {
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
         "projectName": "SportifyApi.Test",
-        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
         "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
-        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\obj\\",
+        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -131,6 +131,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "DotNetEnv": {
               "target": "Package",
               "version": "[3.1.1, )"

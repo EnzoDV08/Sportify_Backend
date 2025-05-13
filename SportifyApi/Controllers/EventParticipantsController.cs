@@ -21,7 +21,6 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ POST: api/EventParticipants/JoinEvent
-        
         [HttpPost("JoinEvent")]
         public async Task<IActionResult> JoinEvent(int eventId, int userId)
         {
@@ -40,19 +39,16 @@ namespace SportifyApi.Controllers
         }
 
         // GET: api/EventParticipants/PendingRequests/{userID}
-        
         [HttpGet("PendingRequests/{userId}")]
         public async Task<IActionResult> GetPendingRequests(int userId)
         {
             var requests = await _eventParticipantService.GetPendingRequestsAsync(userId);
             if (requests != null && requests.Any())
                 return Ok(requests);
-            return NotFound("No pending requests found.");
-            
+            return NotFound("No pending requests found.");   
         }
         
-        // POST: api/EventParticipants/ApproveRequest
-            
+        // POST: api/EventParticipants/ApproveRequest   
         [HttpPost("ApproveRequest")]
         public async Task<IActionResult> ApproveRequest(int eventId, int userId, int approverUserId)
         {
@@ -63,7 +59,6 @@ namespace SportifyApi.Controllers
         }
 
         // POST: api/EventParticipants/RejectRequest
-        
         [HttpPost("RejectRequest")]
         public async Task<IActionResult> RejectRequest(int eventId, int userId, int approverUserId)
         {

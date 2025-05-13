@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "NFhxdy/TolI=",
+  "dgSpecHash": "l+vmTcJIjpA=",
   "success": true,
-  "projectFilePath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+  "projectFilePath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bezui\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\bezui\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\bezui\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\bezui\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\bezui\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\bezui\\.nuget\\packages\\dotnetenv\\3.1.1\\dotnetenv.3.1.1.nupkg.sha512",

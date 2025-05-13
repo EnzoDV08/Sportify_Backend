@@ -16,7 +16,6 @@ namespace SportifyApi.Controllers
             _eventService = eventService;
         }
 
-        // ✅ Create a new event
         // Create a new event
         [HttpPost]
         public async Task<ActionResult<Event>> CreateEvent([FromBody] EventDto eventDto, [FromQuery] int userId)
@@ -44,7 +43,6 @@ namespace SportifyApi.Controllers
             return Ok(events);
         }
 
-        // ✅ Update event
         //Update event
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, EventDto updatedEvent)
@@ -56,7 +54,6 @@ namespace SportifyApi.Controllers
             return Ok(result);
         }
 
-        // ✅ Delete event
         //Delete event
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
