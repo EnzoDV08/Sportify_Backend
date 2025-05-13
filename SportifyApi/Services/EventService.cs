@@ -16,46 +16,44 @@ namespace SportifyApi.Services
         }
 
     public async Task<Event> CreateEventAsync(EventDto eventDto, int userId)
+{
+    var user = await _context.Users.FindAsync(userId);
+    if (user == null)
+        throw new Exception("User not found for event creation.");
+
+    var newEvent = new Event
     {
-        var user = await _context.Users.FindAsync(userId);
-        if (user == null)
-            throw new Exception("User not found for event creation.");
+        Title = eventDto.Title,
+        Description = eventDto.Description, 
+        Date = eventDto.Date.ToUniversalTime(),
+        Location = eventDto.Location,
+        Type = eventDto.Type,
+        Visibility = eventDto.Visibility,
+        Status = eventDto.Status
+    };
 
-        var newEvent = new Event
-        {
-            Title = eventDto.Title,
-            Date = eventDto.Date.ToUniversalTime(),
-            Location = eventDto.Location,
-            Type = eventDto.Type,
-            Visibility = eventDto.Visibility,
-            Status = eventDto.Status,
-            CreatorUserId = userId
-        };
+    if (user.UserType == "admin")
+    {
+        var admin = await _context.Admins.FirstOrDefaultAsync(a => a.UserId == userId);
+        if (admin == null)
+            throw new Exception("Admin not found in Admins table.");
 
-        if (user.UserType == "admin")
-        {
-            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.UserId == userId);
-            if (admin == null)
-                throw new Exception("Admin not found in Admins table.");
-
-            newEvent.AdminId = admin.AdminId;
-        }
-        else if (user.UserType == "user")
-        {
-            newEvent.CreatorUserId = userId;
-        }
-        else
-        {
-            throw new Exception("Invalid user type.");
-        }
-
-        _context.Events.Add(newEvent);
-        await _context.SaveChangesAsync();
-        return newEvent;
+        newEvent.AdminId = admin.AdminId;
+    }
+    else if (user.UserType == "user")
+    {
+        newEvent.CreatorUserId = userId;
+    }
+    else
+    {
+        throw new Exception("Invalid user type.");
     }
 
-
-        public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
+    _context.Events.Add(newEvent);
+    await _context.SaveChangesAsync();
+    return newEvent;
+}
+public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
         {
             var existingEvent = await _context.Events.FindAsync(id);
             if (existingEvent == null)

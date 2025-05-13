@@ -1,0 +1,29 @@
+name: sportify_backend
+
+services:
+  sportify-api:
+    image: sportify-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    command: ["dotnet", "SportifyApi.dll"]
+
+  ef-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build  # Uses the SDK stage
+    working_dir: /src
+    volumes:
+      - .:/src
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    entrypoint: ""  # Overrides default entrypoint so you can run EF CLI manually
