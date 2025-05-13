@@ -25,6 +25,7 @@ namespace SportifyApi.Controllers
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 
+        // ✅ Get a specific event by ID
         // Get a specific event by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Event>> GetEventById(int id)

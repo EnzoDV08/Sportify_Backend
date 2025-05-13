@@ -39,7 +39,7 @@ namespace SportifyApi.Controllers
             return BadRequest("Failed to join the event.");
         }
 
-        // GET: api/EventParticipants/PendingRequests/{userID}
+        // GET: api/EventParticipants/PendingRequests/{adminId}
         
         [HttpGet("PendingRequests/{userId}")]
         public async Task<IActionResult> GetPendingRequests(int userId)

@@ -36,12 +36,11 @@ namespace SportifyApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProfile(int id, ProfileUpdateDto updatedProfile)
+        public async Task<IActionResult> UpdateProfile(int id, ProfileDto updatedProfile)
         {
             var success = await _profileService.UpdateProfileAsync(id, updatedProfile);
             return success ? NoContent() : NotFound();
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProfile(int id)
