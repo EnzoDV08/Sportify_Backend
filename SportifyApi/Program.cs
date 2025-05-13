@@ -25,24 +25,39 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database) ||
 
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
 
-// ✅ 3. Register Services
+// ✅ 3. Bind to 0.0.0.0:5000 so Docker can access it
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5000);
+});
+
+// ✅ 4. Register Services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// ✅ 4. Register custom services (dependency injection)
+// ✅ 5. Register custom services (dependency injection)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventParticipantService, EventParticipantService>();
 
+// ✅ 6. Add CORS (Allow any origin for frontend)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
-// ✅ 5. Build & run the app
+// ✅ 7. Build & run the app
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -51,6 +66,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAll"); // <== Apply CORS here
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
