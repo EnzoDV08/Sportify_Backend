@@ -27,3 +27,4 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     entrypoint: [""]
+    command: ["sleep", "infinity"]
