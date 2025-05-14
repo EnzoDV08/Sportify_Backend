@@ -47,6 +47,19 @@
           }
         }
       },
+      "BCrypt.Net-Next/4.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Castle.Core/5.1.1": {
         "type": "package",
         "dependencies": {
@@ -1385,6 +1398,24 @@
       },
       "Microsoft.EntityFrameworkCore.Analyzers/9.0.4": {
         "type": "package"
+      },
+      "Microsoft.EntityFrameworkCore.InMemory/9.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.4",
+          "Microsoft.Extensions.Caching.Memory": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        }
       },
       "Microsoft.EntityFrameworkCore.Relational/9.0.3": {
         "type": "package",
@@ -4502,6 +4533,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "DotNetEnv": "3.1.1",
           "Microsoft.AspNetCore.OpenApi": "9.0.2",
           "Microsoft.EntityFrameworkCore": "9.0.4",
@@ -4559,6 +4591,37 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
       ]
     },
     "Castle.Core/5.1.1": {
@@ -6875,6 +6938,21 @@
         "docs/PACKAGE.md",
         "microsoft.entityframeworkcore.analyzers.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/9.0.4": {
+      "sha512": "VHjUwjvN8UKjb8xtKJ/o+dc9tTeHOW3QzlfkzX3JrUspLkPIjwMdZCcw6eS4gsFjby0NFkcXBjHtrgTjVOfO5Q==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/9.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.9.0.4.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/9.0.3": {
@@ -13156,6 +13234,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Microsoft.EntityFrameworkCore.InMemory >= 9.0.4",
       "Microsoft.NET.Test.Sdk >= 17.13.0",
       "Moq >= 4.20.72",
       "SportifyApi >= 1.0.0",
@@ -13165,19 +13244,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bezui\\.nuget\\packages\\": {}
+    "C:\\Users\\dekle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+      "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
       "projectName": "SportifyApi.Test",
-      "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
-      "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
-      "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\obj\\",
+      "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+      "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
+      "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -13189,8 +13268,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
-              "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj"
+            "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+              "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj"
             }
           }
         }
@@ -13211,6 +13290,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.InMemory": {
+            "target": "Package",
+            "version": "[9.0.4, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.13.0, )"

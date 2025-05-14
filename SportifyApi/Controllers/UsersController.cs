@@ -15,14 +15,13 @@ namespace SportifyApi.Controllers
             _userService = userService;
         }
 
-        // GET: api/users
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
             return Ok(await _userService.GetAllUsersAsync());
         }
 
-        // GET: api/users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
@@ -30,7 +29,6 @@ namespace SportifyApi.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
-        // POST: api/users
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
         {
@@ -39,12 +37,10 @@ namespace SportifyApi.Controllers
                 return BadRequest("Password is required.");
             }
 
-            var createdUser = await _userService.CreateUserAsync(userDto, userDto.Password!); // The `!` tells C# "trust me it's not null"
+            var createdUser = await _userService.CreateUserAsync(userDto, userDto.Password!); // The `!` tells C# its not null
             return CreatedAtAction(nameof(GetUser), new { id = createdUser.UserId }, createdUser);
         }
 
-
-        // PUT: api/users/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserDto updatedUser)
         {
@@ -52,7 +48,6 @@ namespace SportifyApi.Controllers
             return success ? NoContent() : NotFound();
         }
 
-        // DELETE: api/users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

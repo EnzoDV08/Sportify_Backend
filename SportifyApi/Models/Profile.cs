@@ -3,18 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportifyApi.Models
 {
+    // This class represents the profile of a user in the database.
     public class Profile
-    {
-        [Key]
+    {   
+        // Primary Key for profile
+        [Key] 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("user_id")]
         public int UserId { get; set; }
 
         [Column("ProfilePicture")]
-        public string? ProfilePicture { get; set; }
+        public string? ProfilePicture { get; set; } // ? makes the field nullable
 
         [Column("Location")]
-        public string? Location { get; set; } = string.Empty;
+        public string? Location { get; set; } = string.Empty; // Default value to avoid null reference
 
         [Column("Interests")]
         public string? Interests { get; set; } = string.Empty;

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  sportify-api:
+    image: sportify-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    command: ["dotnet", "SportifyApi.dll"]
+
+  ef-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    working_dir: /src
+    volumes:
+      - .:/src
+    env_file:
+      - .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    entrypoint: [""]
