@@ -24,6 +24,6 @@ namespace SportifyApi.Models
         [Column("user_id")]
         public int UserId { get; set; }
 
-        public User? User { get; set; } // ✅ This is the missing property
+        public User? User { get; set; } 
     }
 }

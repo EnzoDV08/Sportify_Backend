@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  sportify-api:
+    image: sportify-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    command: ["dotnet", "SportifyApi.dll"]
+
+
+  ef-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build  # Use the SDK stage of the Dockerfile (has dotnet-ef installed)
+    working_dir: /src
+    volumes:
+      - .:/src
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    entrypoint: ""  # Prevent it from starting the app, allows EF CLI to run
+
+
+

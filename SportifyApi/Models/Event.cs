@@ -14,6 +14,9 @@ namespace SportifyApi.Models
         [StringLength(100)]
         public string Title { get; set; } = string.Empty;
 
+        [StringLength(300)]
+        public string? Description { get; set; }
+
         [Required]
         public DateTime Date { get; set; }
 
@@ -24,10 +27,21 @@ namespace SportifyApi.Models
         public string? Visibility { get; set; }
         public string? Status { get; set; }
 
-        [Required]
-        public int CreatorUserId { get; set; }
+        public int? CreatorUserId { get; set; }
+        public int? AdminId { get; set; }
 
         [ForeignKey("CreatorUserId")]
         public User? Creator { get; set; }
+
+        [ForeignKey("AdminId")]
+        public Admin? Admin { get; set; }
+
+        public bool IsPrivate { get; set; } = false;
+        public List<int>? InvitedUserIds { get; set; } 
+        
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
+
     }
 }
