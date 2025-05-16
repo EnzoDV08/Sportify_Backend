@@ -41,6 +41,8 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventParticipantService, EventParticipantService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
+builder.Services.AddScoped<IFriendService, FriendService>();
+
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
@@ -69,6 +71,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection(); 
+
 
 app.UseAuthorization();
 app.MapControllers();

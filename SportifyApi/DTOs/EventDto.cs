@@ -9,5 +9,11 @@ namespace SportifyApi.Dtos
         public string? Type { get; set; }
         public string? Visibility { get; set; }
         public string? Status { get; set; }
+
+        public bool IsPrivate { get; set; }
+        public List<int>? InvitedUserIds { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
     }
 }

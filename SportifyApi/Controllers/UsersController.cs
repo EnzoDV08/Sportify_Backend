@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using SportifyApi.Models;
+
 
 namespace SportifyApi.Controllers
 {
@@ -16,7 +19,7 @@ namespace SportifyApi.Controllers
         }
 
         // GET: api/users
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
@@ -25,7 +28,7 @@ namespace SportifyApi.Controllers
         }
 
         // GET: api/users/5
-       
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
@@ -35,7 +38,7 @@ namespace SportifyApi.Controllers
         }
 
         // POST: api/users
-        
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
         {
@@ -45,7 +48,7 @@ namespace SportifyApi.Controllers
         }
 
         // PUT: api/users/5
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserDto updatedUser)
         {
@@ -55,7 +58,7 @@ namespace SportifyApi.Controllers
         }
 
         // DELETE: api/users/5
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -63,5 +66,29 @@ namespace SportifyApi.Controllers
             if (!success) return NotFound();
             return NoContent();
         }
+       [HttpPost("login")]
+public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+{
+    var user = await _userService.GetRawUserByEmailAsync(loginDto.Email);
+
+    if (user is null)
+        return Unauthorized("Invalid email or password.");
+
+    var passwordHasher = new PasswordHasher<User>();
+    var result = passwordHasher.VerifyHashedPassword(user, user.Password, loginDto.Password);
+
+    if (result == PasswordVerificationResult.Failed)
+        return Unauthorized("Invalid email or password.");
+
+    return Ok(new
+    {
+        userId = user.UserId,
+        name = user.Name,
+        email = user.Email,
+        userType = user.UserType
+    });
+}
+
+
     }
 }

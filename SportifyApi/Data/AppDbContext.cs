@@ -14,20 +14,21 @@ namespace SportifyApi.Data
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
-        
+        public DbSet<Friend> Friends { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-           
+
             modelBuilder.Entity<Profile>()
                 .HasKey(p => p.UserId);
 
-            
+
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.User)
-                .WithMany() 
+                .WithMany()
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -64,6 +65,11 @@ namespace SportifyApi.Data
                 .WithMany()
                 .HasForeignKey(ua => ua.AwardedByAdminId)
                 .OnDelete(DeleteBehavior.SetNull);
+                
+            modelBuilder.Entity<Event>()
+                .Property(e => e.InvitedUserIds)
+                .HasColumnType("integer[]");
+
         }
     }
 }
