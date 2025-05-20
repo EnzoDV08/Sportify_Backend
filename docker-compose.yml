@@ -12,6 +12,7 @@ services:
       - .env
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER: 0
     command: ["dotnet", "SportifyApi.dll"]
 
   ef-cli:

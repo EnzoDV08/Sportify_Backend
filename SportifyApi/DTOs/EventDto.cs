@@ -2,6 +2,7 @@ namespace SportifyApi.Dtos
 {
     public class EventDto
     {
+        public int EventId { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime Date { get; set; }
         public string? Description { get; set; }
