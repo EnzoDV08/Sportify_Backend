@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
+using SportifyApi.Models;
 
 namespace SportifyApi.Controllers
 {
@@ -9,59 +12,72 @@ namespace SportifyApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly AppDbContext _context;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, AppDbContext context)
         {
             _userService = userService;
+            _context = context;
         }
 
-        // GET: api/users
-        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            var users = await _userService.GetAllUsersAsync();
-            return Ok(users);
+            return Ok(await _userService.GetAllUsersAsync());
         }
 
-        // GET: api/users/5
-       
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
-            if (user == null) return NotFound();
-            return Ok(user);
+            return user == null ? NotFound() : Ok(user);
         }
 
-        // POST: api/users
-        
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
         {
-            string password = userDto.Password ?? "default"; // In production, validate or hash this!
-            var createdUser = await _userService.CreateUserAsync(userDto, password);
+            if (string.IsNullOrWhiteSpace(userDto.Password))
+            {
+                return BadRequest("Password is required.");
+            }
+
+            var createdUser = await _userService.CreateUserAsync(userDto, userDto.Password!);
             return CreatedAtAction(nameof(GetUser), new { id = createdUser.UserId }, createdUser);
         }
 
-        // PUT: api/users/5
-        
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserDto updatedUser)
         {
             var success = await _userService.UpdateUserAsync(id, updatedUser);
-            if (!success) return NotFound();
-            return NoContent();
+            return success ? NoContent() : NotFound();
         }
 
-        // DELETE: api/users/5
-        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var success = await _userService.DeleteUserAsync(id);
-            if (!success) return NotFound();
-            return NoContent();
+            return success ? NoContent() : NotFound();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequest)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password))
+            {
+                return Unauthorized("Invalid email or password.");
+            }
+
+            var userDto = new UserDto
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Email = user.Email,
+                UserType = user.UserType
+            };
+
+            return Ok(userDto);
         }
     }
 }
