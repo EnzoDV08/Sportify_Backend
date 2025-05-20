@@ -6,19 +6,12 @@ using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
-<<<<<<< HEAD
 // ✅ Load .env only during local development
 #if DEBUG
 DotNetEnv.Env.Load("../.env"); // Adjust path if needed
 #endif
 
 // ✅ Read required Aiven environment variables
-=======
-
-Env.Load();
-
-
->>>>>>> Zander
 var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
 var port = Environment.GetEnvironmentVariable("AIVEN_PORT");
 var database = Environment.GetEnvironmentVariable("AIVEN_DATABASE");
@@ -34,11 +27,7 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database)
 
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
 
-<<<<<<< HEAD
 // ✅ Register services
-=======
-
->>>>>>> Zander
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -46,10 +35,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Zander
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
@@ -99,14 +84,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-<<<<<<< HEAD
 app.UseAuthorization();
 
-=======
-// app.UseHttpsRedirection(); 
-
-app.UseAuthorization();
->>>>>>> Zander
 app.MapControllers();
 
 app.Run();
