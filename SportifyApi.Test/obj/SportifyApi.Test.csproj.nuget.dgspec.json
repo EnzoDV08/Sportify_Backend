@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
         "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
         "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\obj\\",
+=======
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {}
+  },
+  "projects": {
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
+        "projectName": "SportifyApi.Test",
+        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
+        "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
+        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\obj\\",
+>>>>>>> Zander
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -24,12 +24,12 @@ namespace SportifyApi.Services
     var newEvent = new Event
     {
         Title = eventDto.Title,
+        Description = eventDto.Description, 
         Date = eventDto.Date.ToUniversalTime(),
         Location = eventDto.Location,
         Type = eventDto.Type,
         Visibility = eventDto.Visibility,
-        Status = eventDto.Status,
-        CreatorUserId = userId
+        Status = eventDto.Status
     };
 
     if (user.UserType == "admin")
@@ -53,9 +53,7 @@ namespace SportifyApi.Services
     await _context.SaveChangesAsync();
     return newEvent;
 }
-
-
-        public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
+public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
         {
             var existingEvent = await _context.Events.FindAsync(id);
             if (existingEvent == null)

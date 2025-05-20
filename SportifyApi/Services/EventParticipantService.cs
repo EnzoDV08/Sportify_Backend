@@ -23,7 +23,7 @@ namespace SportifyApi.Services
                 .FirstOrDefaultAsync(ep => ep.EventId == eventId && ep.UserId == userId);
 
             if (existingParticipant != null)
-                return false; // Already a participant
+                throw new Exception("User already joined.");
 
             var participant = new EventParticipant
             {

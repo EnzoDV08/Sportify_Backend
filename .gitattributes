@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Use CRLF on checkout, LF in repo
+* text=auto
