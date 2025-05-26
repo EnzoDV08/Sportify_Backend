@@ -24,6 +24,8 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database)
 }
 
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
+Console.WriteLine("🔌 CONNECTING TO:");
+Console.WriteLine(connectionString);
 
 
 builder.Services.AddControllers();
