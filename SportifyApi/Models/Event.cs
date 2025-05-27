@@ -18,7 +18,8 @@ namespace SportifyApi.Models
     public string? Description { get; set; }
 
     [Required]
-    public DateTime Date { get; set; }
+    public DateTime StartDateTime { get; set; }
+    public DateTime EndDateTime { get; set; }
 
     [StringLength(200)]
     public string Location { get; set; } = string.Empty;
@@ -26,9 +27,11 @@ namespace SportifyApi.Models
     public string? Type { get; set; } 
     public string? Visibility { get; set; } 
     public string? Status { get; set; } 
+    public string? RequiredItems { get; set; }
 
     public int? CreatorUserId { get; set; }
     public int? AdminId { get; set; }
+    public string? ImageUrl { get; set; }
 
     [ForeignKey("CreatorUserId")]
     public User? Creator { get; set; }

@@ -24,12 +24,15 @@ namespace SportifyApi.Services
     var newEvent = new Event
     {
         Title = eventDto.Title,
-        Description = eventDto.Description, 
-        Date = eventDto.Date.ToUniversalTime(),
+        Description = eventDto.Description,
+        StartDateTime = eventDto.StartDateTime.ToUniversalTime(),
+        EndDateTime = eventDto.EndDateTime.ToUniversalTime(),
         Location = eventDto.Location,
         Type = eventDto.Type,
         Visibility = eventDto.Visibility,
-        Status = eventDto.Status
+        Status = "upcoming",
+        ImageUrl = eventDto.ImageUrl,
+         RequiredItems = eventDto.RequiredItems
     };
 
     if (user.UserType == "admin")
@@ -60,11 +63,15 @@ public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
                 return null;
 
             existingEvent.Title = updatedEvent.Title;
-            existingEvent.Date = updatedEvent.Date;
+            existingEvent.Description = updatedEvent.Description;
+            existingEvent.StartDateTime = updatedEvent.StartDateTime.ToUniversalTime();
+            existingEvent.EndDateTime = updatedEvent.EndDateTime.ToUniversalTime();
             existingEvent.Location = updatedEvent.Location;
             existingEvent.Type = updatedEvent.Type;
             existingEvent.Visibility = updatedEvent.Visibility;
             existingEvent.Status = updatedEvent.Status;
+            existingEvent.ImageUrl = updatedEvent.ImageUrl;
+            existingEvent.RequiredItems = updatedEvent.RequiredItems;
 
             await _context.SaveChangesAsync();
             return existingEvent;
