@@ -7,6 +7,7 @@ namespace SportifyApi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
+        // DbSet properties for each model/table in the database
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Admin> Admins { get; set; }
@@ -20,6 +21,7 @@ namespace SportifyApi.Data
 
 
             modelBuilder.Entity<Profile>()
+                // Makes sure that userID is the primary key in the Profile table
                 .HasKey(p => p.UserId);
 
 

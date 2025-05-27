@@ -8,6 +8,6 @@ namespace SportifyApi.DTOs
 
         public string Password { get; set; } = string.Empty;
 
-        public string? UserType { get; set; } = "user"; // ✅ Default userType is "user"
+        public string? UserType { get; set; } = "user";
     }
 }
