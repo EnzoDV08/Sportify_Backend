@@ -3,12 +3,14 @@ using SportifyApi.Data;
 using SportifyApi.Services;
 using SportifyApi.Interfaces;
 using DotNetEnv;
+using System.Formats.Tar;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-Env.Load();
-
+// ✅ Load .env only during local development
+#if DEBUG
+DotNetEnv.Env.Load("../.env"); // Adjust path if needed
+#endif
 
 var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
 var port = Environment.GetEnvironmentVariable("AIVEN_PORT");
