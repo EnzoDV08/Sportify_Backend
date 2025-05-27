@@ -46,7 +46,6 @@ builder.Services.AddScoped<IAchievementService, AchievementService>();
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-<<<<<<< HEAD
     serverOptions.ListenAnyIP(80); // Exposes port 80 inside Docker
 });
 
@@ -61,21 +60,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-=======
-    serverOptions.ListenAnyIP(80); 
-});
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowViteFrontend", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:5173") 
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
->>>>>>> Zander
 var app = builder.Build();
 
 app.UseCors("AllowViteFrontend");
