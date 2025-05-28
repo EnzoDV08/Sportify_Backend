@@ -1,4 +1,6 @@
 using SportifyApi.DTOs;
+using SportifyApi.Models;
+
 
 namespace SportifyApi.Interfaces
 {
@@ -9,5 +11,8 @@ namespace SportifyApi.Interfaces
         Task<UserDto> CreateUserAsync(UserDto userDto, string password);
         Task<bool> UpdateUserAsync(int id, UserDto updatedUser);
         Task<bool> DeleteUserAsync(int id);
+        Task<User?> GetRawUserByEmailAsync(string email);
+
+
     }
 }
