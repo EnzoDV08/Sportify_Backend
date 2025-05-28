@@ -1211,3 +1211,4 @@ E:\Interactive Development\Year 3\Term 1\Final\Sportify_Backend\SportifyApi\bin\
 D:\Open Window\Development\2025\Semester 1\Sportify_Backend\SportifyApi\bin\Debug\net9.0\BCrypt.Net-Next.dll
 >>>>>>> origin/Zander
 C:\xampp\htdocs\Sportify_Backend\SportifyApi\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\xampp\htdocs\Sportify_Backend\SportifyApi\bin\Debug\net9.0\SportifyApi.staticwebassets.runtime.json

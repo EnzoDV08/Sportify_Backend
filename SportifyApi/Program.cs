@@ -63,6 +63,8 @@ var app = builder.Build();
 
 app.UseCors("AllowViteFrontend");
 
+app.UseStaticFiles();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
