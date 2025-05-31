@@ -15,21 +15,28 @@ namespace SportifyApi.Data
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<OrganizationProfile> OrganizationProfiles { get; set; }
+
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-           
+
             modelBuilder.Entity<Profile>()
                 // Makes sure that userID is the primary key in the Profile table
                 .HasKey(p => p.UserId);
 
-            
+            modelBuilder.Entity<Organization>().HasKey(o => o.OrganizationId);
+
+            modelBuilder.Entity<OrganizationProfile>()
+                .HasKey(op => op.OrganizationId);
+
             modelBuilder.Entity<Admin>()
                 .HasOne(a => a.User)
-                .WithMany() 
+                .WithMany()
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
