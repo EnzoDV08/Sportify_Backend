@@ -19,118 +19,140 @@ namespace SportifyApi.Services
         {
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
-                throw new Exception("User not found for event creation.");
+                throw new Exception("User not found.");
+
+            // ✅ Ensure DateTime is marked as UTC
+            var startUtc = DateTime.SpecifyKind(eventDto.StartDateTime, DateTimeKind.Utc);
+            var endUtc = DateTime.SpecifyKind(eventDto.EndDateTime, DateTimeKind.Utc);
 
             var newEvent = new Event
             {
                 Title = eventDto.Title,
                 Description = eventDto.Description,
-                Date = eventDto.Date.ToUniversalTime(),
+                StartDateTime = startUtc,
+                EndDateTime = endUtc,
                 Location = eventDto.Location,
                 Type = eventDto.Type,
                 Visibility = eventDto.Visibility,
                 Status = eventDto.Status,
-                IsPrivate = eventDto.IsPrivate,
-                Latitude = eventDto.Latitude ?? 0,
-                Longitude = eventDto.Longitude ?? 0
+                RequiredItems = eventDto.RequiredItems,
+                ImageUrl = eventDto.ImageUrl,
+                CreatorUserId = userId
             };
-
-            if (user.UserType == "admin")
-            {
-                var admin = await _context.Admins.FirstOrDefaultAsync(a => a.UserId == userId);
-                if (admin == null)
-                    throw new Exception("Admin not found in Admins table.");
-
-                newEvent.AdminId = admin.AdminId;
-            }
-            else
-            {
-                newEvent.CreatorUserId = userId;
-            }
 
             _context.Events.Add(newEvent);
             await _context.SaveChangesAsync();
 
-            // Assign invited users
+            // ✅ Invite users (if provided)
             if (eventDto.InvitedUserIds != null && eventDto.InvitedUserIds.Any())
             {
                 foreach (var invitedUserId in eventDto.InvitedUserIds)
                 {
-                    var participation = new EventParticipant
+                    _context.EventParticipants.Add(new EventParticipant
                     {
                         EventId = newEvent.EventId,
-                        UserId = invitedUserId
-                    };
-                    _context.EventParticipants.Add(participation);
+                        UserId = invitedUserId,
+                        Status = "Pending"
+                    });
                 }
+
                 await _context.SaveChangesAsync();
             }
+
+            Console.WriteLine($"Event created by {eventDto.CreatorUserType} (User ID: {userId})");
 
             return newEvent;
         }
 
 
+public async Task<EventDto?> GetEventByIdAsync(int id)
+{
+    var e = await _context.Events
+        .Include(ev => ev.Creator)
+        .Include(ev => ev.Participants)
+            .ThenInclude(p => p.User)
+        .FirstOrDefaultAsync(ev => ev.EventId == id);
+
+    return e == null ? null : ToEventDto(e);
+}
+
+
+public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
+{
+    var events = await _context.Events
+        .Include(e => e.Creator)
+        .Include(e => e.Participants)
+            .ThenInclude(p => p.User)
+        .ToListAsync();
+
+    return events.Select(ToEventDto);
+}
+
+
+        public async Task<IEnumerable<Event>> GetEventsCreatedByUserAsync(int userId)
+        {
+            return await _context.Events
+                .Where(e => e.CreatorUserId == userId)
+                .Include(e => e.Creator)
+                .Include(e => e.Participants)
+                    .ThenInclude(p => p.User)
+                .ToListAsync();
+        }
+
         public async Task<Event?> UpdateEventAsync(int id, EventDto updatedEvent)
         {
-            var existingEvent = await _context.Events.FindAsync(id);
-            if (existingEvent == null)
-                return null;
+            var existing = await _context.Events.FindAsync(id);
+            if (existing == null) return null;
 
-            existingEvent.Title = updatedEvent.Title;
-            existingEvent.Date = updatedEvent.Date;
-            existingEvent.Location = updatedEvent.Location;
-            existingEvent.Type = updatedEvent.Type;
-            existingEvent.Visibility = updatedEvent.Visibility;
-            existingEvent.Status = updatedEvent.Status;
-            existingEvent.IsPrivate = updatedEvent.IsPrivate;
-            existingEvent.InvitedUserIds = updatedEvent.InvitedUserIds;
-            existingEvent.Latitude = updatedEvent.Latitude;
-            existingEvent.Longitude = updatedEvent.Longitude;
+            existing.Title = updatedEvent.Title;
+            existing.Description = updatedEvent.Description;
+            existing.StartDateTime = updatedEvent.StartDateTime;
+            existing.EndDateTime = updatedEvent.EndDateTime;
+            existing.Location = updatedEvent.Location;
+            existing.Type = updatedEvent.Type;
+            existing.Visibility = updatedEvent.Visibility;
+            existing.Status = updatedEvent.Status;
+            existing.RequiredItems = updatedEvent.RequiredItems;
+            existing.ImageUrl = updatedEvent.ImageUrl;
 
             await _context.SaveChangesAsync();
-            return existingEvent;
-        }
-
-        public async Task<Event?> GetEventByIdAsync(int id)
-        {
-            return await _context.Events.FindAsync(id);
-        }
-
-        public async Task<IEnumerable<Event>> GetAllEventsAsync()
-        {
-            return await _context.Events.ToListAsync();
-        }
-
-        public async Task<IEnumerable<Event>> GetEventsVisibleToUserAsync(int userId)
-        {
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null) return new List<Event>();
-
-            var userFriends = await _context.Friends
-                .Where(f => f.UserId == userId)
-                .Select(f => f.FriendUserId)
-                .ToListAsync();
-
-            return await _context.Events
-                .Where(e =>
-                    !e.IsPrivate ||
-                    (e.IsPrivate &&
-                        (e.InvitedUserIds != null && e.InvitedUserIds.Contains(userId)) ||
-                        (e.CreatorUserId != null && userFriends.Contains(e.CreatorUserId.Value))
-                    )
-                )
-                .ToListAsync();
+            return existing;
         }
 
         public async Task<bool> DeleteEventAsync(int id)
         {
             var evnt = await _context.Events.FindAsync(id);
-            if (evnt == null)
-                return false;
+            if (evnt == null) return false;
 
             _context.Events.Remove(evnt);
             await _context.SaveChangesAsync();
             return true;
         }
+        
+            private EventDto ToEventDto(Event e)
+    {
+        return new EventDto
+        {
+            EventId = e.EventId,
+            Title = e.Title,
+            Description = e.Description,
+            StartDateTime = e.StartDateTime,
+            EndDateTime = e.EndDateTime,
+            Location = e.Location,
+            Type = e.Type,
+            Visibility = e.Visibility,
+            Status = e.Status,
+            RequiredItems = e.RequiredItems,
+            ImageUrl = e.ImageUrl,
+            CreatorUserType = e.Creator?.UserType ?? "user", // fallback
+            CreatorName = e.Creator?.Name ?? "Unknown",
+            InvitedUserIds = _context.EventParticipants
+                .Where(p => p.EventId == e.EventId)
+                .Select(p => p.UserId)
+                .ToList()
+        };
+    }
+
     }
 }
+

@@ -1,12 +1,434 @@
 {
   "Version": 1,
-  "Hash": "dg3xIoCAqLQ30FP5yX+TeaE+peLlIHNy9Op5b+yVz0s=",
+  "Hash": "p7OwtxRtx/YoX3IB/mn7RQvDTEu3S02RXn20YUZNT0Q=",
   "Source": "SportifyApi",
   "BasePath": "_content/SportifyApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SportifyApi\\wwwroot",
+      "Source": "SportifyApi",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "SourceId": "SportifyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "RelativePath": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gdx9slmlph",
+      "Integrity": "zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "SourceId": "SportifyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "RelativePath": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vjclv0yx53",
+      "Integrity": "Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png"
+    },
+    {
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "SourceId": "SportifyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "RelativePath": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vjclv0yx53",
+      "Integrity": "Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png"
+    },
+    {
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "SourceId": "SportifyApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "RelativePath": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gdx9slmlph",
+      "Integrity": "zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439.gdx9slmlph.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gdx9slmlph"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21858"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a.vjclv0yx53.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21858"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vjclv0yx53"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21858"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.vjclv0yx53.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21858"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vjclv0yx53"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ne7eSaOLA9bFpquCcHoPf9b9g45sRbz4pVDqLRj1/5I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7.gdx9slmlph.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gdx9slmlph"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "420465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-zD6YUWqHfpKnBRi/8wrTw61lcjo2EDSYHHxWpegSux8="
+        }
+      ]
+    }
+  ]
 }

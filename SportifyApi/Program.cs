@@ -4,10 +4,14 @@ using SportifyApi.Services;
 using SportifyApi.Interfaces;
 using DotNetEnv;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 
-Env.Load();
+// ✅ Load .env only during local development
+#if DEBUG
+DotNetEnv.Env.Load("../.env"); // Adjust path if needed
+#endif
 
 
 var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
@@ -37,11 +41,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
-builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IEventParticipantService, EventParticipantService>();
+builder.Services.AddScoped<IUserAchievementService, UserAchievementService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
-builder.Services.AddScoped<IFriendService, FriendService>();
+builder.Services.AddScoped<IOrganizationService, OrganizationService>();
+builder.Services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
+
+
+
+
 
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -61,6 +70,14 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+
+// ✅ Seed Achievements (Only once at startup)
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    DbSeeder.SeedAchievements(dbContext);
+}
+
 
 app.UseCors("AllowViteFrontend");
 

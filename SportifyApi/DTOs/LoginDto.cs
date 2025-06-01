@@ -1,4 +1,4 @@
-namespace SportifyApi.DTOs
+namespace SportifyApi.Dtos
 {
     public class LoginDto
     {

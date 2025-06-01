@@ -1,14 +1,15 @@
+// Models/Organization.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportifyApi.Models
 {
-    public class Admin
+    public class Organization
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("admin_id")]
-        public int AdminId { get; set; }
+        [Column("organization_id")]
+        public int OrganizationId { get; set; }
 
         [Required]
         [Column("name")]
@@ -20,10 +21,15 @@ namespace SportifyApi.Models
         public string Email { get; set; } = string.Empty;
 
         [Required]
-        [ForeignKey("User")]
-        [Column("user_id")]
-        public int UserId { get; set; }
+        [Column("password")]
+        public string Password { get; set; } = string.Empty;
 
-        public User? User { get; set; } 
+        [Column("website")]
+        public string? Website { get; set; }
+
+        [Column("contact_person")]
+        public string? ContactPerson { get; set; }
+
+        
     }
 }

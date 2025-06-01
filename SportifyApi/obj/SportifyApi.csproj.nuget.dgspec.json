@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-        "packagesPath": "C:\\Users\\Jakes\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\obj\\",
+        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+        "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jakes\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -52,23 +52,27 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.5, )"
             },
-            "Microsoft.EntityFrameworkCore.InMemory": {
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -78,19 +82,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[17.13.0, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[9.0.0, )"
-            },
-            "Moq": {
-              "target": "Package",
-              "version": "[4.20.72, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -98,17 +94,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.9.3, )"
-            },
-            "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[8.1.1, )"
             }
           },
           "imports": [

@@ -1,63 +1,90 @@
-using Xunit;
-using Microsoft.EntityFrameworkCore;
-using SportifyApi.Data;
-using SportifyApi.Models;
-using SportifyApi.Services;
-using FluentAssertions;
 using System;
 using System.Threading.Tasks;
-using SportifyApi.Dtos; 
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+using SportifyApi.Data;
+using SportifyApi.Dtos;
+using SportifyApi.Models;
+using SportifyApi.Services;
 
 namespace SportifyApi.Tests.Services
 {
     public class EventServiceTests
     {
-        private AppDbContext GetDbContext()
+        private readonly DbContextOptions<AppDbContext> _options;
+
+        public EventServiceTests()
         {
-            var options = new DbContextOptionsBuilder<AppDbContext>()
+            _options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
-
-            return new AppDbContext(options);
         }
 
         [Fact]
-public async Task CreateEventAsync_ShouldAddEvent()
-{
-    // Arrange
-    var context = GetDbContext();
-    var service = new EventService(context);
+        public async Task CreateEventAsync_ShouldCreateEvent()
+        {
+            using var context = new AppDbContext(_options);
+            context.Users.Add(new User { UserId = 1, Name = "Admin", Email = "admin@mail.com", Password = "123", UserType = "admin" });
+            await context.SaveChangesAsync();
 
-    // Add a test user to satisfy foreign key/user validation
-    context.Users.Add(new User
-    {
-        UserId = 1,
-        Name = "Test User",
-        Email = "test@example.com",
-        Password = "hashed",
-        UserType = "user"
-    });
-    await context.SaveChangesAsync();
+            var service = new EventService(context);
+            var newEvent = new EventDto
+            {
+                Title = "Test Event",
+                StartDateTime = DateTime.UtcNow,
+                EndDateTime = DateTime.UtcNow.AddHours(2),
+                Location = "Test Field"
+            };
 
-    var eventDto = new EventDto
-    {
-        Title = "Test Event",
-        Description = "Unit test description",
-        Date = DateTime.UtcNow,
-        Location = "Pretoria",
-        Type = "Soccer",
-        Visibility = "Public",
-        Status = "Upcoming"
-    };
+            var result = await service.CreateEventAsync(newEvent, 1);
 
-    int userId = 1;
-    await service.CreateEventAsync(eventDto, userId);
+            Assert.NotNull(result);
+            Assert.Equal("Test Event", result.Title);
+        }
 
-    // Assert
-    var added = await context.Events.FirstOrDefaultAsync(e => e.Title == "Test Event");
-    added.Should().NotBeNull();
-    added.Description.Should().Be("Unit test description");
-}
+        [Fact]
+        public async Task GetEventByIdAsync_ShouldReturnEvent()
+        {
+            using var context = new AppDbContext(_options);
+            var ev = new Event
+            {
+                Title = "Find Me",
+                StartDateTime = DateTime.UtcNow,
+                EndDateTime = DateTime.UtcNow.AddHours(1),
+                Location = "Stadium",
+                CreatorUserId = 1
+            };
+            context.Users.Add(new User { UserId = 1, Name = "User", Email = "user@mail.com", Password = "123" });
+            context.Events.Add(ev);
+            await context.SaveChangesAsync();
 
+            var service = new EventService(context);
+            var found = await service.GetEventByIdAsync(ev.EventId);
+
+            Assert.NotNull(found);
+            Assert.Equal("Find Me", found.Title);
+        }
+
+        [Fact]
+        public async Task DeleteEventAsync_ShouldRemoveEvent()
+        {
+            using var context = new AppDbContext(_options);
+            var ev = new Event
+            {
+                Title = "Delete This",
+                StartDateTime = DateTime.UtcNow,
+                EndDateTime = DateTime.UtcNow.AddHours(1),
+                Location = "Gym",
+                CreatorUserId = 1
+            };
+            context.Users.Add(new User { UserId = 1, Name = "Test", Email = "test@mail.com", Password = "123" });
+            context.Events.Add(ev);
+            await context.SaveChangesAsync();
+
+            var service = new EventService(context);
+            var deleted = await service.DeleteEventAsync(ev.EventId);
+
+            Assert.True(deleted);
+        }
     }
 }
