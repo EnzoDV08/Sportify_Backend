@@ -1,34 +1,20 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {}
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {}
   },
   "projects": {
-    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
+        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
         "projectName": "SportifyApi.Test",
-        "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
-        "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
-        "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi.Test\\obj\\",
-=======
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {}
-  },
-  "projects": {
-    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
-        "projectName": "SportifyApi.Test",
-        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\SportifyApi.Test.csproj",
+        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\SportifyApi.Test.csproj",
         "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
-        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.test\\obj\\",
->>>>>>> Zander
+        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi.Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -40,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
-                "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj"
+              "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+                "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj"
               }
             }
           }
@@ -62,10 +48,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[9.0.4, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.13.0, )"
@@ -109,17 +91,17 @@
         }
       }
     },
-    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+    "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-        "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
-        "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\",
+        "projectPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "packagesPath": "C:\\Users\\bezui\\.nuget\\packages\\",
+        "outputPath": "D:\\Open Window\\Development\\2025\\Semester 1\\Sportify_Backend\\SportifyApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\bezui\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -149,10 +131,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.3, )"
-            },
             "DotNetEnv": {
               "target": "Package",
               "version": "[3.1.1, )"

@@ -19,6 +19,7 @@ namespace SportifyApi.Models
         [Required]
         [MaxLength(50)]
         public string Status { get; set; } = "Pending";
+
         
        public Event? Event { get; set; }
        public User? User { get; set; }

@@ -3,6 +3,7 @@ using SportifyApi.Data;
 using SportifyApi.Services;
 using SportifyApi.Interfaces;
 using DotNetEnv;
+using System.Formats.Tar;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load("../.env"); // Adjust path if needed
 #endif
 
-// ✅ Read required Aiven environment variables
 var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
 var port = Environment.GetEnvironmentVariable("AIVEN_PORT");
 var database = Environment.GetEnvironmentVariable("AIVEN_DATABASE");
@@ -26,16 +26,16 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database)
 }
 
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
-Console.WriteLine("🔌 CONNECTING TO:");
-Console.WriteLine(connectionString);
 
-// ✅ Register services
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
+
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
@@ -50,23 +50,24 @@ builder.Services.AddScoped<IOrganizationProfileService, OrganizationProfileServi
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenAnyIP(80); // Exposes port 80 inside Docker
+    serverOptions.ListenAnyIP(80); 
 });
 
-// ✅ Setup CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowViteFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            .WithOrigins("http://localhost:5173") 
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
-
 var app = builder.Build();
 
 app.UseCors("AllowViteFrontend");
+
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
@@ -74,8 +75,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// app.UseHttpsRedirection(); 
+
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "Ne70FxpvbskkRYEXmNuDTH04qxmA2G/v+6YMGFfRr7w=",
+  "Source": "SportifyApi",
+  "BasePath": "_content/SportifyApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SportifyApi\\wwwroot",
+      "Source": "SportifyApi",
+      "ContentRoot": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "BasePath": "_content/SportifyApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}

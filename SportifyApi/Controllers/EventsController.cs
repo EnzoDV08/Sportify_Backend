@@ -20,7 +20,7 @@ namespace SportifyApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Event>> CreateEvent([FromBody] EventDto eventDto, [FromQuery] int userId)
         {
-            var createdEvent = await _eventService.CreateEventAsync(eventDto, userId);  
+            var createdEvent = await _eventService.CreateEventAsync(eventDto, userId);
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 
@@ -34,7 +34,6 @@ namespace SportifyApi.Controllers
 
             return Ok(evnt);
         }
-
         // Get all events
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()

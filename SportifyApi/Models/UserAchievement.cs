@@ -21,6 +21,7 @@ namespace SportifyApi.Models
 
         public DateTime AwardedAt { get; set; } = DateTime.UtcNow;
 
+
         public User User { get; set; } = null!;
         public Achievement Achievement { get; set; } = null!;
         public Event? Event { get; set; }
