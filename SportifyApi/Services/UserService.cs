@@ -53,11 +53,30 @@ namespace SportifyApi.Services
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            userDto.UserId = user.UserId;
-            userDto.UserType = user.UserType; // Return back the actual userType
+            // Create empty profile
+            var profile = new Profile
+            {
+                UserId = user.UserId,
+                ProfilePicture = null,
+                Location = null,
+                Interests = null,
+                FavoriteSports = null,
+                Availability = null,
+                Bio = null,
+                PhoneNumber = null,
+                SocialMediaLink = null,
+                Gender = null,
+                Age = null
+            };
 
+            _context.Profiles.Add(profile);
+            await _context.SaveChangesAsync();
+
+            userDto.UserId = user.UserId;
+            userDto.UserType = user.UserType;
             return userDto;
         }
+
 
 
         public async Task<bool> UpdateUserAsync(int id, UserDto updatedUser)

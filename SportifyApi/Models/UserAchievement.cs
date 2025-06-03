@@ -1,29 +1,32 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SportifyApi.Models
 {
     public class UserAchievement
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int UserAchievementId { get; set; }
 
-        [Required]
+        [ForeignKey("UserId")]
         public int UserId { get; set; }
 
-        [Required]
+        [JsonIgnore] 
+        public User User { get; set; } = null!;
+
+        [ForeignKey("AchievementId")]
         public int AchievementId { get; set; }
 
+        public Achievement Achievement { get; set; } = null!;
+
+        [ForeignKey("EventId")]
         public int? EventId { get; set; }
 
-        public int? AwardedByAdminId { get; set; }
-
-        public DateTime AwardedAt { get; set; } = DateTime.UtcNow;
-
-        public User User { get; set; } = null!;
-        public Achievement Achievement { get; set; } = null!;
+        [JsonIgnore] 
         public Event? Event { get; set; }
-        public Admin? AwardedByAdmin { get; set; }
+
+        public DateTime DateAwarded { get; set; } = DateTime.UtcNow;
     }
 }

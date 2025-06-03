@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SportifyApi.DTOs;
+using SportifyApi.Dtos;
 using SportifyApi.Interfaces;
 
 namespace SportifyApi.Controllers
@@ -8,40 +8,26 @@ namespace SportifyApi.Controllers
     [Route("api/[controller]")]
     public class AchievementsController : ControllerBase
     {
-        private readonly IAchievementService _service;
+        private readonly IAchievementService _achievementService;
 
-        public AchievementsController(IAchievementService service)
+        public AchievementsController(IAchievementService achievementService)
         {
-            _service = service;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var achievements = await _service.GetAllAchievementsAsync();
-            return Ok(achievements);
+            _achievementService = achievementService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AchievementDto dto)
+        public async Task<IActionResult> CreateAchievement([FromBody] AchievementDto dto)
         {
-            var result = await _service.CreateAchievementAsync(dto);
-            if (!result) return BadRequest("Failed to create achievement.");
-            return Ok("Achievement created.");
+            var result = await _achievementService.CreateAchievementAsync(dto);
+            if (result)
+                return Ok("Achievement created successfully.");
+            return BadRequest("Failed to create achievement.");
         }
 
-        [HttpPost("assign")]
-        public async Task<IActionResult> AssignToUser(UserAchievementDto dto)
+        [HttpGet]
+        public async Task<IActionResult> GetAllAchievements()
         {
-            var result = await _service.AssignToUserAsync(dto);
-            if (!result) return BadRequest("Assignment failed.");
-            return Ok("Achievement assigned to user.");
-        }
-
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetUserAchievements(int userId)
-        {
-            var achievements = await _service.GetUserAchievementsAsync(userId);
+            var achievements = await _achievementService.GetAllAchievementsAsync();
             return Ok(achievements);
         }
     }

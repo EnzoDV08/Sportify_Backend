@@ -1,5 +1,7 @@
 namespace SportifyApi.DTOs
 {
+    // Data Transfer Object for Profile
+    // Used to send and receive profile data without exposing the full entity
     public class ProfileDto
     {
         public int UserId { get; set; }

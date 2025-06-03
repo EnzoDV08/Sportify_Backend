@@ -7,69 +7,66 @@ namespace SportifyApi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
+        // ✅ DbSet declarations
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
-        
+
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<OrganizationProfile> OrganizationProfiles { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-           
+            // ✅ Profile → Primary Key (UserId)
             modelBuilder.Entity<Profile>()
                 .HasKey(p => p.UserId);
 
-            
-            modelBuilder.Entity<Admin>()
-                .HasOne(a => a.User)
-                .WithMany() 
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
+            // ✅ Event ↔ Participants (many-to-one, navigates to Event.Participants)
             modelBuilder.Entity<EventParticipant>()
                 .HasOne(ep => ep.Event)
-                .WithMany()
+                .WithMany(e => e.Participants)
                 .HasForeignKey(ep => ep.EventId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Participant ↔ User (many-to-one, no reverse nav)
             modelBuilder.Entity<EventParticipant>()
                 .HasOne(ep => ep.User)
-                .WithMany()
+                .WithMany() // No navigation from User → EventParticipant
                 .HasForeignKey(ep => ep.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ User ↔ UserAchievements (one-to-many)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.User)
-                .WithMany()
-                .HasForeignKey(ua => ua.UserId);
+                .WithMany() // No navigation from User → UserAchievement
+                .HasForeignKey(ua => ua.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Achievement ↔ UserAchievement (one-to-many)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.Achievement)
                 .WithMany(a => a.UserAchievements)
-                .HasForeignKey(ua => ua.AchievementId);
+                .HasForeignKey(ua => ua.AchievementId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Event ↔ UserAchievement (nullable FK, e.g., "First Join" is not tied to a specific event)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.Event)
                 .WithMany()
                 .HasForeignKey(ua => ua.EventId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.Entity<UserAchievement>()
-                .HasOne(ua => ua.AwardedByAdmin)
-                .WithMany()
-                .HasForeignKey(ua => ua.AwardedByAdminId)
-                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Organization>().HasKey(o => o.OrganizationId);
+
+            modelBuilder.Entity<OrganizationProfile>()
+                .HasKey(op => op.OrganizationId);
+
         }
     }
 }
-
-// STEPS TO CREATE A TABLE IN MY DB:
-// 1. Create a model to represent the structure/columns of your table
-// 2. Add the table in our db context
-// 3. Create a migration specifying the changes made (dotnet ef migrations add InitialCreation)
-// 4. database update to sync (dotnet ef database update )

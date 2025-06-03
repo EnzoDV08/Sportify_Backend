@@ -18,7 +18,7 @@ namespace SportifyApi.Services
 
         public async Task<IEnumerable<ProfileDto>> GetAllProfilesAsync()
         {
-            return await _context.Profiles
+            return await _context.Profiles //access the Profiles table
                 .Select(profile => new ProfileDto
                 {
                     UserId = profile.UserId,
@@ -81,19 +81,20 @@ namespace SportifyApi.Services
             await _context.SaveChangesAsync();
             return profileDto;
         }
-
+        
+        // Allows Partial Updates
         public async Task<bool> UpdateProfileAsync(int userId, ProfileUpdateDto updatedProfile)
 {
-            var user = await _context.Users.FindAsync(userId);
-            var profile = await _context.Profiles.FindAsync(userId);
+            var user = await _context.Users.FindAsync(userId); // Find the user by ID
+            var profile = await _context.Profiles.FindAsync(userId); // Find the profile by user ID
 
+            // Returns false if it cant find the user or profile
             if (user == null || profile == null)
                 return false;
 
-            // ✅ Update only the fields that are NOT null (partial update)
 
             // User table updates
-            if (!string.IsNullOrWhiteSpace(updatedProfile.Name))
+            if (!string.IsNullOrWhiteSpace(updatedProfile.Name)) // Checks id string is not null or whitespace before it continues
             {
                 user.Name = updatedProfile.Name;
             }
