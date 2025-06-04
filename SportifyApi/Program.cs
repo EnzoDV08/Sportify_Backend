@@ -83,19 +83,10 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCors("AllowViteFrontend");
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// ✅ Always enable Swagger (even in production like Render)
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseCors("AllowViteFrontend");
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // ✅ Serve wwwroot (CSS, JS, etc.)
 app.UseStaticFiles();
