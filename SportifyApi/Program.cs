@@ -68,9 +68,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowViteFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") 
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.WithOrigins(
+            "http://localhost:5173", // Local dev
+            "https://sportifydebuggers.netlify.app" // ✅ Netlify live frontend
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
