@@ -12,8 +12,8 @@ namespace SportifyApi.Controllers
         {
             _env = env;
         }
-    
 
+        [HttpPost]
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile image, [FromQuery] string? oldImageUrl = null)
         {
@@ -50,5 +50,4 @@ namespace SportifyApi.Controllers
         }
     }
 }
-
 

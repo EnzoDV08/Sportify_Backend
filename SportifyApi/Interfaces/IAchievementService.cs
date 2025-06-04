@@ -1,5 +1,4 @@
-using SportifyApi.DTOs;
-
+using SportifyApi.Dtos;
 
 namespace SportifyApi.Interfaces
 {
@@ -7,8 +6,8 @@ namespace SportifyApi.Interfaces
     {
         Task<IEnumerable<AchievementDto>> GetAllAchievementsAsync();
         Task<bool> CreateAchievementAsync(AchievementDto dto);
-        Task<bool> AssignToUserAsync(UserAchievementDto dto);
-        Task<IEnumerable<AchievementDto>> GetUserAchievementsAsync(int userId);
-        Task CheckAutoAchievementsAsync(int userId);
+
+        Task<IEnumerable<AchievementDto>> GetAchievementsBySportAsync(string sport);
+
     }
 }

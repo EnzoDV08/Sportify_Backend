@@ -10,7 +10,6 @@ namespace SportifyApi.Data
         // DbSet properties for each model/table in the database
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
@@ -25,6 +24,7 @@ namespace SportifyApi.Data
             base.OnModelCreating(modelBuilder);
 
 
+            // ✅ Profile → Primary Key (UserId)
             modelBuilder.Entity<Profile>()
                 // Makes sure that userID is the primary key in the Profile table
                 .HasKey(p => p.UserId);
@@ -40,39 +40,46 @@ namespace SportifyApi.Data
                 .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Event ↔ Participants (many-to-one, navigates to Event.Participants)
             modelBuilder.Entity<EventParticipant>()
                 .HasOne(ep => ep.Event)
-                .WithMany()
+                .WithMany(e => e.Participants)
                 .HasForeignKey(ep => ep.EventId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Participant ↔ User (many-to-one, no reverse nav)
             modelBuilder.Entity<EventParticipant>()
                 .HasOne(ep => ep.User)
-                .WithMany()
+                .WithMany() // No navigation from User → EventParticipant
                 .HasForeignKey(ep => ep.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ User ↔ UserAchievements (one-to-many)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.User)
-                .WithMany()
-                .HasForeignKey(ua => ua.UserId);
+                .WithMany() // No navigation from User → UserAchievement
+                .HasForeignKey(ua => ua.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Achievement ↔ UserAchievement (one-to-many)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.Achievement)
                 .WithMany(a => a.UserAchievements)
-                .HasForeignKey(ua => ua.AchievementId);
+                .HasForeignKey(ua => ua.AchievementId)
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Event ↔ UserAchievement (nullable FK, e.g., "First Join" is not tied to a specific event)
             modelBuilder.Entity<UserAchievement>()
                 .HasOne(ua => ua.Event)
                 .WithMany()
                 .HasForeignKey(ua => ua.EventId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.Entity<UserAchievement>()
-                .HasOne(ua => ua.AwardedByAdmin)
-                .WithMany()
-                .HasForeignKey(ua => ua.AwardedByAdminId)
-                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<Organization>().HasKey(o => o.OrganizationId);
+
+            modelBuilder.Entity<OrganizationProfile>()
+                .HasKey(op => op.OrganizationId);
+
         }
     }
 }
