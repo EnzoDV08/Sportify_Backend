@@ -52,7 +52,7 @@ namespace SportifyApi.Services
                     {
                         EventId = newEvent.EventId,
                         UserId = invitedUserId,
-                        Status = "Pending"
+                        Status = "Invited"
                     });
                 }
 
@@ -129,30 +129,30 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
             return true;
         }
         
-            private EventDto ToEventDto(Event e)
+        private EventDto ToEventDto(Event e)
+{
+    return new EventDto
     {
-        return new EventDto
-        {
-            EventId = e.EventId,
-            Title = e.Title,
-            Description = e.Description,
-            StartDateTime = e.StartDateTime,
-            EndDateTime = e.EndDateTime,
-            Location = e.Location,
-            Type = e.Type,
-            Visibility = e.Visibility,
-            Status = e.Status,
-            RequiredItems = e.RequiredItems,
-            ImageUrl = e.ImageUrl,
-            CreatorUserType = e.Creator?.UserType ?? "user", // fallback
-            CreatorName = e.Creator?.Name ?? "Unknown",
-            InvitedUserIds = _context.EventParticipants
-                .Where(p => p.EventId == e.EventId)
-                .Select(p => p.UserId)
-                .ToList()
-        };
-    }
+        EventId = e.EventId,
+        Title = e.Title,
+        Description = e.Description,
+        StartDateTime = e.StartDateTime,
+        EndDateTime = e.EndDateTime,
+        Location = e.Location,
+        Type = e.Type,
+        Visibility = e.Visibility,
+        Status = e.Status,
+        RequiredItems = e.RequiredItems,
+        ImageUrl = e.ImageUrl,
+        CreatorUserId = e.CreatorUserId,
+        CreatorUserType = e.Creator?.UserType ?? "user",
+        CreatorName = e.Creator?.Name ?? "Unknown",
+        InvitedUserIds = _context.EventParticipants
+            .Where(p => p.EventId == e.EventId)
+            .Select(p => p.UserId)
+            .ToList()
+    };
+}
 
     }
 }
-

@@ -40,8 +40,7 @@ namespace SportifyApi.Controllers
 
             return Ok(evnt);
         }
-
-        // ✅ Get all events with creators and participants
+// ✅ Get all events with creators and participants
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EventDto>>> GetAllEvents()
 

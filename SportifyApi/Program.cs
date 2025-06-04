@@ -3,6 +3,8 @@ using SportifyApi.Data;
 using SportifyApi.Services;
 using SportifyApi.Interfaces;
 using DotNetEnv;
+using Microsoft.Extensions.FileProviders; 
+using System.IO; 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -86,6 +88,25 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowViteFrontend");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+// ✅ Serve wwwroot (CSS, JS, etc.)
+app.UseStaticFiles();
+
+// ✅ Serve /uploads from wwwroot/uploads
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+    RequestPath = "/uploads"
+});
 
 // app.UseHttpsRedirection(); 
 

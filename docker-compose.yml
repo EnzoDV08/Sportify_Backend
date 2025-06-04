@@ -13,6 +13,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     command: ["dotnet", "SportifyApi.dll"]
+    volumes:
+    - ./SportifyApi/wwwroot/uploads:/app/wwwroot/uploads
 
 
   ef-cli:

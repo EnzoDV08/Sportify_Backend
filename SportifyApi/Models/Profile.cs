@@ -5,7 +5,7 @@ namespace SportifyApi.Models
 {
     // This class represents the profile of a user in the database.
     public class Profile
-    {   
+    {
         // Primary Key for profile
         [Key] 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

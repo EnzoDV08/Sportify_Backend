@@ -30,7 +30,7 @@ namespace SportifyApi.Models
         public string? RequiredItems { get; set; }
         public string? ImageUrl { get; set; }
 
-        public int? CreatorUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         [ForeignKey("CreatorUserId")]
         public User? Creator { get; set; }

@@ -13,7 +13,7 @@ namespace SportifyApi.Dtos
     public string? Visibility { get; set; }
     public string? Status { get; set; }
     public string? ImageUrl { get; set; }
-
+    public int CreatorUserId { get; set; }
     public List<int> InvitedUserIds { get; set; } = new();
     public string CreatorUserType { get; set; } = string.Empty;
     public string? CreatorName { get; set; } 
