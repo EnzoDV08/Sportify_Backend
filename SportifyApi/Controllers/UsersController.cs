@@ -33,6 +33,17 @@ namespace SportifyApi.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchUsersByName([FromQuery] string name)
+        {
+            var users = await _context.Users
+                .Where(u => u.Name.ToLower().Contains(name.ToLower())) // 👈 case-insensitive
+                .Select(u => new { u.UserId, u.Name })
+                .ToListAsync();
+
+            return Ok(users);
+        }
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserDto userDto)
         {

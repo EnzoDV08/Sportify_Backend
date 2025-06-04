@@ -42,16 +42,20 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ GET: api/EventParticipants/PendingRequests/{userId}
-        [HttpGet("PendingRequests/{userId}")]
-        public async Task<IActionResult> GetPendingRequests(int userId)
-        {
-            var requests = await _eventParticipantService.GetPendingRequestsAsync(userId);
+            [HttpGet("PendingRequests/{userId}")]
+            public async Task<IActionResult> GetPendingRequests(int userId)
+            {
+                var requests = await _context.EventParticipants
+                    .Include(p => p.User)
+                    .Include(p => p.Event)
+                    .Where(p => p.Status == "Pending")
+                    .ToListAsync();
 
-            if (requests != null && requests.Any())
-                return Ok(requests);
+                // Now filter based on CreatorUserId in memory
+                var filtered = requests.Where(p => p.Event?.CreatorUserId == userId).ToList();
 
-            return NotFound("No pending requests found.");
-        }
+                return Ok(filtered);
+            }
 
         // ✅ POST: api/EventParticipants/ApproveRequest
         [HttpPost("ApproveRequest")]

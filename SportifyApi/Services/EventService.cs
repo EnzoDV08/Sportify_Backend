@@ -156,3 +156,4 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
 
     }
 }
+
