@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SportifyApi.Data;
 using SportifyApi.Services;
 using SportifyApi.Interfaces;
+using System.Text.Json.Serialization;
 using DotNetEnv;
 
 
@@ -30,7 +31,9 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database) ||
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+        x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -14,7 +14,6 @@ namespace SportifyApi.Data
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserAchievement> UserAchievements { get; set; }
-
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<OrganizationProfile> OrganizationProfiles { get; set; }
 
