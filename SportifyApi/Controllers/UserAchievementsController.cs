@@ -18,23 +18,6 @@ namespace SportifyApi.Controllers
             _userAchievementService = userAchievementService;
         }
 
-<<<<<<< HEAD
-        // ✅ Assign an achievement to a user (Admin action)
-[HttpPost("assign")]
-public async Task<IActionResult> AssignAchievement([FromBody] AssignAchievementDto dto)
-{
-    try
-    {
-        var result = await _userAchievementService.AssignAchievementAsync(dto);
-        return Ok(result);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(new { message = ex.Message }); // 👈 This is what shows in frontend
-    }
-}
-
-=======
         [HttpPost("assign")]
         [ProducesResponseType(typeof(UserAchievement), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,7 +33,6 @@ public async Task<IActionResult> AssignAchievement([FromBody] AssignAchievementD
                 return BadRequest(ex.Message);
             }
         }
->>>>>>> Enzo
 
         [HttpGet("user/{userId}")]
         [ProducesResponseType(typeof(List<UserAchievement>), StatusCodes.Status200OK)]
