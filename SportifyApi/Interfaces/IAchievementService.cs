@@ -9,5 +9,7 @@ namespace SportifyApi.Interfaces
 
         Task<IEnumerable<AchievementDto>> GetAchievementsBySportAsync(string sport);
 
+
+
     }
 }

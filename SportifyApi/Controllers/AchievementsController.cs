@@ -30,5 +30,7 @@ namespace SportifyApi.Controllers
             var achievements = await _achievementService.GetAllAchievementsAsync();
             return Ok(achievements);
         }
+
+        
     }
 }

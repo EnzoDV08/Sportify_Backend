@@ -66,6 +66,10 @@ namespace SportifyApi.Data
             modelBuilder.Entity<OrganizationProfile>()
                 .HasKey(op => op.OrganizationId);
 
+            modelBuilder.Entity<Achievement>()
+                .HasKey(a => a.AchievementId);
+
+
         }
     }
 }

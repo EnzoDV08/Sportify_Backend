@@ -7,8 +7,9 @@ namespace SportifyApi.Models
     public class Achievement
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AchievementId { get; set; }
+
 
         [Required]
         public string Title { get; set; } = string.Empty;

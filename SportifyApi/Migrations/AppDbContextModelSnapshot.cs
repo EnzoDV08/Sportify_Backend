@@ -25,10 +25,7 @@ namespace SportifyApi.Migrations
             modelBuilder.Entity("SportifyApi.Models.Achievement", b =>
                 {
                     b.Property<int>("AchievementId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AchievementId"));
 
                     b.Property<string>("Description")
                         .IsRequired()

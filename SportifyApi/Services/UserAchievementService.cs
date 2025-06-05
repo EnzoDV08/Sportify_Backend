@@ -132,6 +132,30 @@ namespace SportifyApi.Services
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<bool> UnassignAchievementAsync(UnassignAchievementDto dto)
+{
+    var record = await _context.UserAchievements
+        .FirstOrDefaultAsync(ua => ua.UserId == dto.UserId && ua.AchievementId == dto.AchievementId);
+
+    if (record == null)
+        return false;
+
+    _context.UserAchievements.Remove(record);
+    await _context.SaveChangesAsync();
+
+    var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.UserId == dto.UserId);
+    var achievement = await _context.Achievements.FirstOrDefaultAsync(a => a.AchievementId == dto.AchievementId);
+    if (profile != null && achievement != null)
+    {
+        profile.TotalPoints -= achievement.Points;
+        if (profile.TotalPoints < 0) profile.TotalPoints = 0;
+        await _context.SaveChangesAsync();
+    }
+
+    return true;
+}
+
     }
 }
 
