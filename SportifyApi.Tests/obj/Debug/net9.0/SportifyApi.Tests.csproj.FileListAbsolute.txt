@@ -343,3 +343,4 @@ C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi.Tests\obj\Debug\net
 C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi.Tests\obj\Debug\net9.0\SportifyApi.Tests.genruntimeconfig.cache
 C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi.Tests\obj\Debug\net9.0\ref\SportifyApi.Tests.dll
 C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi.Tests\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\enzod\Documents\GitHub\Sportify_Backend\SportifyApi.Tests\bin\Debug\net9.0\SportifyApi.staticwebassets.runtime.json

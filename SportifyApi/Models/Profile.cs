@@ -7,7 +7,7 @@ namespace SportifyApi.Models
     public class Profile
     {
         // Primary Key for profile
-        [Key] 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("user_id")]
         public int UserId { get; set; }
@@ -41,5 +41,10 @@ namespace SportifyApi.Models
 
         [Column("Age")]
         public int? Age { get; set; }
+        
+        [Column("TotalPoints")]
+        public int TotalPoints { get; set; } = 0;
+
+
     }
 }

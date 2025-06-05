@@ -19,8 +19,8 @@ namespace SportifyApi.Services
         public async Task<UserAchievement> AssignAchievementAsync(AssignAchievementDto dto)
         {
             var achievement = await _context.Achievements.FindAsync(dto.AchievementId);
-            var awardingUser = await _context.Users.FindAsync(dto.AwardedByUserId); 
-            
+            var awardingUser = await _context.Users.FindAsync(dto.AwardedByUserId);
+
             if (awardingUser == null || awardingUser.UserId != 2)
                 throw new Exception("Only the admin with ID 2 can assign achievements.");
 
@@ -38,8 +38,9 @@ namespace SportifyApi.Services
                 DateAwarded = DateTime.UtcNow
             };
 
-            _context.UserAchievements.Add(userAchievement);
+            await _context.UserAchievements.AddAsync(userAchievement);
             await _context.SaveChangesAsync();
+            await UpdateUserTotalPoints(dto.UserId); // 🔁 Sync total points
             return userAchievement;
         }
 
@@ -76,13 +77,31 @@ namespace SportifyApi.Services
                 if (alreadyEarned.Contains(achievement.AchievementId))
                     continue;
 
-                // ✅ Easy Demo Achievements
+                bool shouldAward = false;
+
+                // 🎯 Participation-based triggers
                 if (achievement.Title == "First Event Joined" && joinedCount >= 1 ||
                     achievement.Title == "Joined 2 Events" && joinedCount >= 2 ||
                     achievement.Title == "Joined 3 Events" && joinedCount >= 3 ||
                     achievement.Title == "Joined 5 Events" && joinedCount >= 5 ||
                     achievement.Title == "10 Events Joined" && joinedCount >= 10 ||
                     achievement.Title == "100 Events Joined" && joinedCount >= 100)
+                {
+                    shouldAward = true;
+                }
+                // 🏅 Match by sport type
+                else if (!string.IsNullOrEmpty(achievement.SportType))
+                {
+                    var hasMatchingSport = joinedEvents.Any(ep =>
+                        ep.Event?.SportType?.ToLower() == achievement.SportType.ToLower());
+
+                    if (hasMatchingSport)
+                    {
+                        shouldAward = true;
+                    }
+                }
+
+                if (shouldAward)
                 {
                     _context.UserAchievements.Add(new UserAchievement
                     {
@@ -92,28 +111,29 @@ namespace SportifyApi.Services
                         DateAwarded = DateTime.UtcNow
                     });
                 }
-
-                // ✅ Match achievement by sport type
-                else if (!string.IsNullOrEmpty(achievement.SportType))
-                {
-                    var hasMatchingSport = joinedEvents.Any(ep => ep.Event?.SportType?.ToLower() == achievement.SportType.ToLower());
-
-                    if (hasMatchingSport)
-                    {
-                        _context.UserAchievements.Add(new UserAchievement
-                        {
-                            UserId = userId,
-                            AchievementId = achievement.AchievementId,
-                            EventId = null,
-                            DateAwarded = DateTime.UtcNow
-                        });
-                    }
-                }
             }
 
             await _context.SaveChangesAsync();
+            await UpdateUserTotalPoints(userId); // 🔁 Sync after auto-assign
+        }
+
+        // 🔄 Sync total points based on actual earned achievements
+        private async Task UpdateUserTotalPoints(int userId)
+        {
+            var totalPoints = await _context.UserAchievements
+                .Where(ua => ua.UserId == userId)
+                .Include(ua => ua.Achievement)
+                .SumAsync(ua => ua.Achievement.Points);
+
+            var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.UserId == userId);
+            if (profile != null)
+            {
+                profile.TotalPoints = totalPoints;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
+
 
 

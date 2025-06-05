@@ -31,7 +31,8 @@ namespace SportifyApi.Services
                     PhoneNumber = profile.PhoneNumber,
                     SocialMediaLink = profile.SocialMediaLink,
                     Gender = profile.Gender,
-                    Age = profile.Age
+                    Age = profile.Age,
+                    TotalPoints = profile.TotalPoints
                 })
                 .ToListAsync();
         }
@@ -56,7 +57,8 @@ namespace SportifyApi.Services
                 PhoneNumber = profile.PhoneNumber,
                 SocialMediaLink = profile.SocialMediaLink,
                 Gender = profile.Gender,
-                Age = profile.Age
+                Age = profile.Age,
+                TotalPoints = profile.TotalPoints
             };
         }
 
