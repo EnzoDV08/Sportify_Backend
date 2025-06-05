@@ -104,5 +104,18 @@ namespace SportifyApi.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> RemoveUserFromEventAsync(int eventId, int userId)
+{
+    var participant = await _context.EventParticipants
+        .FirstOrDefaultAsync(p => p.EventId == eventId && p.UserId == userId);
+
+    if (participant == null) return false;
+
+    _context.EventParticipants.Remove(participant);
+    await _context.SaveChangesAsync();
+    return true;
+}
+
     }
 }
