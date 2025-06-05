@@ -131,7 +131,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
             return true;
         }
         
-        private EventDto ToEventDto(Event e)
+private EventDto ToEventDto(Event e)
 {
     return new EventDto
     {
@@ -150,10 +150,16 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
         CreatorUserId = e.CreatorUserId,
         CreatorUserType = e.Creator?.UserType ?? "user",
         CreatorName = e.Creator?.Name ?? "Unknown",
-        InvitedUserIds = _context.EventParticipants
-            .Where(p => p.EventId == e.EventId)
-            .Select(p => p.UserId)
-            .ToList()
+
+        // ✅ Updated fields below:
+        InvitedUserIds = e.Participants.Select(p => p.UserId).ToList(),
+
+        Participants = e.Participants.Select(p => new SimpleUserDto
+        {
+            UserId = p.User.UserId,
+            Name = p.User.Name,
+            Email = p.User.Email
+        }).ToList()
     };
 }
 

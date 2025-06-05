@@ -18,5 +18,7 @@ namespace SportifyApi.Dtos
     public List<int> InvitedUserIds { get; set; } = new();
     public string CreatorUserType { get; set; } = string.Empty;
     public string? CreatorName { get; set; } 
+
+    public List<SimpleUserDto> Participants { get; set; } = new();
     }
 }
