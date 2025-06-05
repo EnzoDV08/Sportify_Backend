@@ -17,19 +17,20 @@ namespace SportifyApi.Controllers
         }
 
         // ✅ Assign an achievement to a user (Admin action)
-        [HttpPost("assign")]
-        public async Task<ActionResult<UserAchievement>> AssignAchievement([FromBody] AssignAchievementDto dto)
-        {
-            try
-            {
-                var result = await _userAchievementService.AssignAchievementAsync(dto);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+[HttpPost("assign")]
+public async Task<IActionResult> AssignAchievement([FromBody] AssignAchievementDto dto)
+{
+    try
+    {
+        var result = await _userAchievementService.AssignAchievementAsync(dto);
+        return Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { message = ex.Message }); // 👈 This is what shows in frontend
+    }
+}
+
 
         // ✅ View all achievements for a specific user
         [HttpGet("user/{userId}")]

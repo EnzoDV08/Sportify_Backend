@@ -16,33 +16,55 @@ namespace SportifyApi.Services
         }
 
         // 🔐 Only admin with ID 2 can assign achievements
-        public async Task<UserAchievement> AssignAchievementAsync(AssignAchievementDto dto)
+       public async Task<UserAchievement> AssignAchievementAsync(AssignAchievementDto dto)
+{
+    try
+    {
+        var awardingUser = await _context.Users.FindAsync(dto.AwardedByUserId);
+        if (awardingUser == null || awardingUser.UserId != 2)
+            throw new Exception("Only the admin with ID 2 can assign achievements.");
+
+        var user = await _context.Users.FindAsync(dto.UserId);
+        if (user == null)
+            throw new Exception("Target user not found.");
+
+        var achievement = await _context.Achievements.FindAsync(dto.AchievementId);
+        if (achievement == null)
+            throw new Exception("Achievement not found.");
+
+        var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.UserId == dto.UserId);
+        if (profile == null)
+            throw new Exception("Profile for this user not found.");
+
+        var alreadyAssigned = await _context.UserAchievements
+            .AnyAsync(ua => ua.UserId == dto.UserId && ua.AchievementId == dto.AchievementId);
+
+        if (alreadyAssigned)
+            throw new Exception("User already has this achievement.");
+
+        var userAchievement = new UserAchievement
         {
-            var achievement = await _context.Achievements.FindAsync(dto.AchievementId);
-            var awardingUser = await _context.Users.FindAsync(dto.AwardedByUserId);
+            AchievementId = dto.AchievementId,
+            UserId = dto.UserId,
+            EventId = dto.EventId,
+            DateAwarded = DateTime.UtcNow
+        };
 
-            if (awardingUser == null || awardingUser.UserId != 2)
-                throw new Exception("Only the admin with ID 2 can assign achievements.");
+        _context.UserAchievements.Add(userAchievement);
 
-            var alreadyAssigned = await _context.UserAchievements
-                .AnyAsync(ua => ua.UserId == dto.UserId && ua.AchievementId == dto.AchievementId);
+        // 💯 Add points to profile now
+        profile.TotalPoints += achievement.Points;
 
-            if (alreadyAssigned)
-                throw new Exception("User already has this achievement.");
+        await _context.SaveChangesAsync();
 
-            var userAchievement = new UserAchievement
-            {
-                AchievementId = dto.AchievementId,
-                UserId = dto.UserId,
-                EventId = dto.EventId,
-                DateAwarded = DateTime.UtcNow
-            };
+        return userAchievement;
+    }
+    catch (Exception ex)
+    {
+        throw new Exception($"Failed to assign achievement: {ex.Message}");
+    }
+}
 
-            await _context.UserAchievements.AddAsync(userAchievement);
-            await _context.SaveChangesAsync();
-            await UpdateUserTotalPoints(dto.UserId); // 🔁 Sync total points
-            return userAchievement;
-        }
 
         // 📥 Get all earned achievements for a user
         public async Task<List<UserAchievement>> GetAchievementsByUserAsync(int userId)
