@@ -63,7 +63,7 @@ namespace SportifyApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventId"));
 
-                    b.Property<int?>("CreatorUserId")
+                    b.Property<int>("CreatorUserId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Description")
@@ -82,6 +82,9 @@ namespace SportifyApi.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<string>("RequiredItems")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SportType")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("StartDateTime")
@@ -324,7 +327,9 @@ namespace SportifyApi.Migrations
                 {
                     b.HasOne("SportifyApi.Models.User", "Creator")
                         .WithMany()
-                        .HasForeignKey("CreatorUserId");
+                        .HasForeignKey("CreatorUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Creator");
                 });

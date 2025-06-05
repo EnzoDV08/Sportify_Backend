@@ -9,6 +9,7 @@ namespace SportifyApi.Dtos
     public string? RequiredItems { get; set; }
     public string? Description { get; set; }
     public string Location { get; set; } = string.Empty;
+    public string? SportType { get; set; }
     public string? Type { get; set; }
     public string? Visibility { get; set; }
     public string? Status { get; set; }
