@@ -32,6 +32,7 @@ namespace SportifyApi.Services
                 StartDateTime = startUtc,
                 EndDateTime = endUtc,
                 Location = eventDto.Location,
+                SportType = eventDto.SportType,
                 Type = eventDto.Type,
                 Visibility = eventDto.Visibility,
                 Status = eventDto.Status,
@@ -109,6 +110,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
             existing.StartDateTime = updatedEvent.StartDateTime;
             existing.EndDateTime = updatedEvent.EndDateTime;
             existing.Location = updatedEvent.Location;
+            existing.SportType = updatedEvent.SportType;
             existing.Type = updatedEvent.Type;
             existing.Visibility = updatedEvent.Visibility;
             existing.Status = updatedEvent.Status;
@@ -139,6 +141,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
         StartDateTime = e.StartDateTime,
         EndDateTime = e.EndDateTime,
         Location = e.Location,
+        SportType = e.SportType,
         Type = e.Type,
         Visibility = e.Visibility,
         Status = e.Status,
