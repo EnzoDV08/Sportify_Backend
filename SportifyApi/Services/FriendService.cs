@@ -150,7 +150,7 @@ Profile = new ProfileDto
         public async Task<List<FullFriendDto>> SearchUsersAsync(string query, int currentUserId)
         {
             var users = await _context.Users
-                .Where(u => u.Name.Contains(query) && u.UserId != currentUserId)
+                .Where(u => u.Name.ToLower().Contains(query.ToLower()) && u.UserId != currentUserId)
                 .ToListAsync();
 
             var result = new List<FullFriendDto>();

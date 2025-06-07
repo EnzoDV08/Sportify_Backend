@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/src/SportifyApi/SportifyApi.csproj": {}
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "/src/SportifyApi/SportifyApi.csproj": {
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/src/SportifyApi/SportifyApi.csproj",
+        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "/src/SportifyApi/SportifyApi.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/src/SportifyApi/obj/",
+        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+        "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -116,7 +116,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
