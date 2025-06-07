@@ -140,6 +140,29 @@ namespace SportifyApi.Migrations
                     b.ToTable("EventParticipants");
                 });
 
+            modelBuilder.Entity("SportifyApi.Models.Friend", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FriendId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Friends");
+                });
+
             modelBuilder.Entity("SportifyApi.Models.Organization", b =>
                 {
                     b.Property<int>("OrganizationId")

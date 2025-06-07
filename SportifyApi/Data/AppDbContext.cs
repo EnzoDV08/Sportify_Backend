@@ -16,8 +16,10 @@ namespace SportifyApi.Data
         public DbSet<UserAchievement> UserAchievements { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<OrganizationProfile> OrganizationProfiles { get; set; }
+        public DbSet<Friend> Friends { get; set; }
 
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -69,6 +71,7 @@ namespace SportifyApi.Data
             modelBuilder.Entity<Achievement>()
                 .HasKey(a => a.AchievementId);
 
+            modelBuilder.Entity<Friend>().HasKey(f => f.Id);
 
         }
     }

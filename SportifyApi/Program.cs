@@ -53,6 +53,8 @@ builder.Services.AddScoped<IUserAchievementService, UserAchievementService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
 builder.Services.AddScoped<IOrganizationService, OrganizationService>();
 builder.Services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
+builder.Services.AddScoped<IFriendService, FriendService>();
+
 
 
 

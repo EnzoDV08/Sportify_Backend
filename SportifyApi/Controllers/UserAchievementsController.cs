@@ -50,7 +50,7 @@ namespace SportifyApi.Controllers
             return Ok("Auto achievements checked.");
         }
 
-        [HttpDelete("unassign")]
+        [HttpPost("unassign")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UnassignAchievement([FromBody] UnassignAchievementDto dto)
