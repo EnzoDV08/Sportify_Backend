@@ -46,6 +46,7 @@ builder.Services.AddScoped<IUserAchievementService, UserAchievementService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
 builder.Services.AddScoped<IOrganizationService, OrganizationService>();
 builder.Services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
+builder.Services.AddScoped<GoogleAuthService>();
 
 
 
@@ -70,12 +71,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// ✅ Seed Achievements (Only once at startup)
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbSeeder.SeedAchievements(dbContext);
-}
+// // ✅ Seed Achievements (Only once at startup)
+// using (var scope = app.Services.CreateScope())
+// {
+//     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//     DbSeeder.SeedAchievements(dbContext);
+// }
 
 
 app.UseCors("AllowViteFrontend");

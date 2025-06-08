@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
+    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
+    "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-        "packagesPath": "C:\\Users\\Jakes\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\Sportify_Backend\\SportifyApi\\obj\\",
+        "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+        "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
+        "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jakes\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -51,6 +51,10 @@
             "DotNetEnv": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
