@@ -1,7 +1,6 @@
-// DTO class that used to update both the user and profile tables in the database
 public class ProfileUpdateDto
 {
-    public string? Name { get; set; }   //Name, Email, and Password are in the User table           
+    public string? Name { get; set; }           
     public string? Email { get; set; }         
     public string? Password { get; set; }      
     public string? ProfilePicture { get; set; }
@@ -14,4 +13,5 @@ public class ProfileUpdateDto
     public string? SocialMediaLink { get; set; }
     public string? Gender { get; set; }
     public int? Age { get; set; }
+    public int? TotalPoints { get; set; }
 }

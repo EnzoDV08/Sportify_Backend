@@ -13,9 +13,10 @@ namespace SportifyApi.Services
 
         public async Task<GoogleJsonWebSignature.Payload?> VerifyTokenAsync(string token)
         {
+            var googleClientId = _config["GOOGLE_CLIENT_ID"];
             var settings = new GoogleJsonWebSignature.ValidationSettings
             {
-                Audience = new[] { _config["GOOGLE_CLIENT_ID"] }
+                Audience = new[] { googleClientId }
             };
 
             try

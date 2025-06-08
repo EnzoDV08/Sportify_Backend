@@ -66,7 +66,8 @@ namespace SportifyApi.Services
                 PhoneNumber = null,
                 SocialMediaLink = null,
                 Gender = null,
-                Age = null
+                Age = null,
+                TotalPoints = 0 // ✅ Add this line
             };
 
             _context.Profiles.Add(profile);
@@ -112,7 +113,7 @@ namespace SportifyApi.Services
 
             // Optional: create empty profile for the new user
             var profile = new Profile
-            {
+        {
                 UserId = user.UserId,
                 ProfilePicture = null,
                 Location = null,
@@ -123,7 +124,8 @@ namespace SportifyApi.Services
                 PhoneNumber = null,
                 SocialMediaLink = null,
                 Gender = null,
-                Age = null
+                Age = null,
+                TotalPoints = 0 // ✅ Add this line
             };
 
             _context.Profiles.Add(profile);

@@ -31,7 +31,8 @@ namespace SportifyApi.Services
                     PhoneNumber = profile.PhoneNumber,
                     SocialMediaLink = profile.SocialMediaLink,
                     Gender = profile.Gender,
-                    Age = profile.Age
+                    Age = profile.Age,
+                    TotalPoints = profile.TotalPoints
                 })
                 .ToListAsync();
         }
@@ -56,7 +57,8 @@ namespace SportifyApi.Services
                 PhoneNumber = profile.PhoneNumber,
                 SocialMediaLink = profile.SocialMediaLink,
                 Gender = profile.Gender,
-                Age = profile.Age
+                Age = profile.Age,
+                TotalPoints = profile.TotalPoints
             };
         }
 
@@ -74,7 +76,8 @@ namespace SportifyApi.Services
                 PhoneNumber = profileDto.PhoneNumber,
                 SocialMediaLink = profileDto.SocialMediaLink,
                 Gender = profileDto.Gender,
-                Age = profileDto.Age
+                Age = profileDto.Age,
+                TotalPoints = profileDto.TotalPoints
             };
 
             _context.Profiles.Add(profile);
@@ -158,6 +161,11 @@ namespace SportifyApi.Services
             if (updatedProfile.Age.HasValue)
             {
                 profile.Age = updatedProfile.Age.Value;
+            }
+
+            if (updatedProfile.TotalPoints.HasValue)
+            {
+                profile.TotalPoints = updatedProfile.TotalPoints.Value;
             }
 
             await _context.SaveChangesAsync();
