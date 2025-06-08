@@ -99,5 +99,37 @@ namespace SportifyApi.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<User?> FindByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+        }
+
+        public async Task<User> CreateUserAsync(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            // Optional: create empty profile for the new user
+            var profile = new Profile
+            {
+                UserId = user.UserId,
+                ProfilePicture = null,
+                Location = null,
+                Interests = null,
+                FavoriteSports = null,
+                Availability = null,
+                Bio = null,
+                PhoneNumber = null,
+                SocialMediaLink = null,
+                Gender = null,
+                Age = null
+            };
+
+            _context.Profiles.Add(profile);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
     }
 }

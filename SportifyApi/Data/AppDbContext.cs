@@ -34,11 +34,11 @@ namespace SportifyApi.Data
             modelBuilder.Entity<OrganizationProfile>()
                 .HasKey(op => op.OrganizationId);
 
-            modelBuilder.Entity<Admin>()
-                .HasOne(a => a.User)
-                .WithMany()
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // modelBuilder.Entity<Admin>()
+            //     .HasOne(a => a.User)
+            //     .WithMany()
+            //     .HasForeignKey(a => a.UserId)
+            //     .OnDelete(DeleteBehavior.Cascade);
 
             // ✅ Event ↔ Participants (many-to-one, navigates to Event.Participants)
             modelBuilder.Entity<EventParticipant>()
