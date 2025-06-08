@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fC+bm03YlJfJlLtMBtnzpZinD13iVcdpvEgtgpZkTDw=",
+  "Hash": "p7OwtxRtx/YoX3IB/mn7RQvDTEu3S02RXn20YUZNT0Q=",
   "Source": "SportifyApi",
   "BasePath": "_content/SportifyApi",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SportifyApi\\wwwroot",
       "Source": "SportifyApi",
-      "ContentRoot": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
       "BasePath": "_content/SportifyApi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
       "SourceId": "SportifyApi",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
       "BasePath": "_content/SportifyApi",
       "RelativePath": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439#[.{fingerprint}]?.jpeg",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg"
     },
     {
-      "Identity": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
       "SourceId": "SportifyApi",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
       "BasePath": "_content/SportifyApi",
       "RelativePath": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -59,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png"
     },
     {
-      "Identity": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
       "SourceId": "SportifyApi",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
       "BasePath": "_content/SportifyApi",
       "RelativePath": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -80,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png"
     },
     {
-      "Identity": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "Identity": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
       "SourceId": "SportifyApi",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\",
       "BasePath": "_content/SportifyApi",
       "RelativePath": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7#[.{fingerprint}]?.jpeg",
       "AssetKind": "All",
@@ -104,7 +104,7 @@
   "Endpoints": [
     {
       "Route": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439.gdx9slmlph.jpeg",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -125,7 +125,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -149,7 +149,7 @@
     },
     {
       "Route": "uploads/275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\275fd1ff-9f8f-4a8a-a382-0c832cedd439.jpeg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -170,7 +170,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -186,7 +186,7 @@
     },
     {
       "Route": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -207,7 +207,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -223,7 +223,7 @@
     },
     {
       "Route": "uploads/8356e3d3-4333-4ed0-8107-cf9a3027f32a.vjclv0yx53.png",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\8356e3d3-4333-4ed0-8107-cf9a3027f32a.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -244,7 +244,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -268,7 +268,7 @@
     },
     {
       "Route": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -289,7 +289,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -305,7 +305,7 @@
     },
     {
       "Route": "uploads/aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.vjclv0yx53.png",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\aed6dbf9-f4ff-4e2d-88b3-9909a204ecdf.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -326,7 +326,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -350,7 +350,7 @@
     },
     {
       "Route": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7.gdx9slmlph.jpeg",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -371,7 +371,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -395,7 +395,7 @@
     },
     {
       "Route": "uploads/eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
-      "AssetFile": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
+      "AssetFile": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\wwwroot\\uploads\\eb6af2ab-6796-443c-881f-d686c6a640f7.jpeg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -416,7 +416,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 10:02:33 GMT"
+          "Value": "Sun, 01 Jun 2025 19:02:10 GMT"
         },
         {
           "Name": "Cache-Control",
