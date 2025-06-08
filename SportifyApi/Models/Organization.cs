@@ -29,5 +29,7 @@ namespace SportifyApi.Models
 
         [Column("contact_person")]
         public string? ContactPerson { get; set; }
+
+        
     }
 }

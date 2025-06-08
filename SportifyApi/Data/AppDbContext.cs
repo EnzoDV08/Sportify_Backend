@@ -7,7 +7,7 @@ namespace SportifyApi.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
-        // DbSet properties for each model/table in the database
+        // ✅ DbSet declarations
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -16,29 +16,18 @@ namespace SportifyApi.Data
         public DbSet<UserAchievement> UserAchievements { get; set; }
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<OrganizationProfile> OrganizationProfiles { get; set; }
+        public DbSet<Friend> Friends { get; set; }
 
         
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-
             // ✅ Profile → Primary Key (UserId)
             modelBuilder.Entity<Profile>()
-                // Makes sure that userID is the primary key in the Profile table
                 .HasKey(p => p.UserId);
-
-            modelBuilder.Entity<Organization>().HasKey(o => o.OrganizationId);
-
-            modelBuilder.Entity<OrganizationProfile>()
-                .HasKey(op => op.OrganizationId);
-
-            // modelBuilder.Entity<Admin>()
-            //     .HasOne(a => a.User)
-            //     .WithMany()
-            //     .HasForeignKey(a => a.UserId)
-            //     .OnDelete(DeleteBehavior.Cascade);
 
             // ✅ Event ↔ Participants (many-to-one, navigates to Event.Participants)
             modelBuilder.Entity<EventParticipant>()
@@ -79,6 +68,11 @@ namespace SportifyApi.Data
 
             modelBuilder.Entity<OrganizationProfile>()
                 .HasKey(op => op.OrganizationId);
+
+            modelBuilder.Entity<Achievement>()
+                .HasKey(a => a.AchievementId);
+
+            modelBuilder.Entity<Friend>().HasKey(f => f.Id);
 
         }
     }

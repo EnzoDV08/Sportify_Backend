@@ -32,6 +32,7 @@ namespace SportifyApi.Services
                 StartDateTime = startUtc,
                 EndDateTime = endUtc,
                 Location = eventDto.Location,
+                SportType = eventDto.SportType,
                 Type = eventDto.Type,
                 Visibility = eventDto.Visibility,
                 Status = eventDto.Status,
@@ -109,6 +110,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
             existing.StartDateTime = updatedEvent.StartDateTime;
             existing.EndDateTime = updatedEvent.EndDateTime;
             existing.Location = updatedEvent.Location;
+            existing.SportType = updatedEvent.SportType;
             existing.Type = updatedEvent.Type;
             existing.Visibility = updatedEvent.Visibility;
             existing.Status = updatedEvent.Status;
@@ -129,7 +131,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
             return true;
         }
         
-        private EventDto ToEventDto(Event e)
+private EventDto ToEventDto(Event e)
 {
     return new EventDto
     {
@@ -139,6 +141,7 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
         StartDateTime = e.StartDateTime,
         EndDateTime = e.EndDateTime,
         Location = e.Location,
+        SportType = e.SportType,
         Type = e.Type,
         Visibility = e.Visibility,
         Status = e.Status,
@@ -147,10 +150,16 @@ public async Task<IEnumerable<EventDto>> GetAllEventsAsync()
         CreatorUserId = e.CreatorUserId,
         CreatorUserType = e.Creator?.UserType ?? "user",
         CreatorName = e.Creator?.Name ?? "Unknown",
-        InvitedUserIds = _context.EventParticipants
-            .Where(p => p.EventId == e.EventId)
-            .Select(p => p.UserId)
-            .ToList()
+
+        // ✅ Updated fields below:
+        InvitedUserIds = e.Participants.Select(p => p.UserId).ToList(),
+
+        Participants = e.Participants.Select(p => new SimpleUserDto
+        {
+            UserId = p.User.UserId,
+            Name = p.User.Name,
+            Email = p.User.Email
+        }).ToList()
     };
 }
 

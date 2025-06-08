@@ -8,5 +8,9 @@ namespace SportifyApi.Interfaces
         Task<UserAchievement> AssignAchievementAsync(AssignAchievementDto dto);
         Task<List<UserAchievement>> GetAchievementsByUserAsync(int userId);
         Task CheckAutoAchievementsAsync(int userId);
+
+        Task<bool> UnassignAchievementAsync(UnassignAchievementDto dto);
+
+
     }
 }

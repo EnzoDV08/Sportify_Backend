@@ -1,4 +1,4 @@
-
+version: "3.8"
 
 services:
   sportify-api:
@@ -12,8 +12,9 @@ services:
       - .env
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER: 0
     command: ["dotnet", "SportifyApi.dll"]
+    volumes:
+    - ./SportifyApi/wwwroot/uploads:/app/wwwroot/uploads
 
 
   ef-cli:

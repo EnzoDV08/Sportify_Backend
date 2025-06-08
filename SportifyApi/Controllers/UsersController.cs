@@ -90,5 +90,6 @@ namespace SportifyApi.Controllers
 
             return Ok(userDto);
         }
+
     }
 }

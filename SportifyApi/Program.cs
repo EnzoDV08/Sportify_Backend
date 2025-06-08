@@ -2,16 +2,21 @@ using Microsoft.EntityFrameworkCore;
 using SportifyApi.Data;
 using SportifyApi.Services;
 using SportifyApi.Interfaces;
+using System.Text.Json.Serialization;
 using DotNetEnv;
-using System.Formats.Tar;
+using Microsoft.Extensions.FileProviders; 
+using System.IO; 
+
 
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // ✅ Load .env only during local development
 #if DEBUG
 DotNetEnv.Env.Load("../.env"); // Adjust path if needed
 #endif
+
 
 var host = Environment.GetEnvironmentVariable("AIVEN_HOST");
 var port = Environment.GetEnvironmentVariable("AIVEN_PORT");
@@ -29,7 +34,9 @@ if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(database) ||
 var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SslMode={sslmode}";
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+        x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -47,6 +54,8 @@ builder.Services.AddScoped<IAchievementService, AchievementService>();
 builder.Services.AddScoped<IOrganizationService, OrganizationService>();
 builder.Services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
 builder.Services.AddScoped<GoogleAuthService>();
+builder.Services.AddScoped<IFriendService, FriendService>();
+
 
 
 
@@ -62,9 +71,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowViteFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") 
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.WithOrigins(
+            "http://localhost:5173", // Local dev
+            "https://sportifydebuggers.netlify.app" // ✅ Netlify live frontend
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
@@ -81,13 +93,21 @@ var app = builder.Build();
 
 app.UseCors("AllowViteFrontend");
 
+// ✅ Always enable Swagger (even in production like Render)
+app.UseSwagger();
+app.UseSwaggerUI();
+
+
+// ✅ Serve wwwroot (CSS, JS, etc.)
 app.UseStaticFiles();
 
-if (app.Environment.IsDevelopment())
+// ✅ Serve /uploads from wwwroot/uploads
+app.UseStaticFiles(new StaticFileOptions
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+    RequestPath = "/uploads"
+});
 
 // app.UseHttpsRedirection(); 
 

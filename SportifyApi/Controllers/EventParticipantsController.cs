@@ -45,12 +45,16 @@ namespace SportifyApi.Controllers
         [HttpGet("PendingRequests/{userId}")]
         public async Task<IActionResult> GetPendingRequests(int userId)
         {
-            var requests = await _eventParticipantService.GetPendingRequestsAsync(userId);
+            var requests = await _context.EventParticipants
+                .Include(p => p.User)
+                .Include(p => p.Event)
+                .Where(p => p.Status == "Pending")
+                .ToListAsync();
 
-            if (requests != null && requests.Any())
-                return Ok(requests);
+            // Now filter based on CreatorUserId in memory
+            var filtered = requests.Where(p => p.Event?.CreatorUserId == userId).ToList();
 
-            return NotFound("No pending requests found.");
+            return Ok(filtered);
         }
 
         // ✅ POST: api/EventParticipants/ApproveRequest
@@ -106,7 +110,7 @@ namespace SportifyApi.Controllers
 
             return Ok("Invite accepted.");
         }
-        
+
         [HttpPost("RejectInvite")]
         public async Task<IActionResult> RejectInvite(int eventId, int userId)
         {
@@ -121,5 +125,16 @@ namespace SportifyApi.Controllers
 
             return Ok("Invite rejected.");
         }
+        
+        [HttpDelete("RemoveUser")]
+        public async Task<IActionResult> RemoveUserFromEvent(int eventId, int userId)
+        {
+            var success = await _eventParticipantService.RemoveUserFromEventAsync(eventId, userId);
+            if (success)
+                return Ok("User removed from event.");
+
+            return NotFound("User not found in event.");
+        }
+
     }
 }
