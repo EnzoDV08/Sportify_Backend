@@ -13565,19 +13565,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dekle\\.nuget\\packages\\": {}
+    "C:\\Users\\enzod\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
+      "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
       "projectName": "SportifyApi",
-      "projectPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
-      "packagesPath": "C:\\Users\\dekle\\.nuget\\packages\\",
-      "outputPath": "E:\\Interactive Development\\Year 3\\Term 1\\Final\\Sportify_Backend\\SportifyApi\\obj\\",
+      "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+      "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dekle\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
