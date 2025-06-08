@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SportifyApi.Models
 {
@@ -20,8 +21,10 @@ namespace SportifyApi.Models
         [MaxLength(50)]
         public string Status { get; set; } = "Pending";
 
-        
-       public Event? Event { get; set; }
-       public User? User { get; set; }
+        // ✅ Prevent infinite JSON loop by skipping Event when serializing
+        [JsonIgnore]
+        public Event Event { get; set; } = null!;
+
+        public User User { get; set; } = null!;
     }
 }

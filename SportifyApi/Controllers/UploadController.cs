@@ -2,53 +2,53 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SportifyApi.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UploadController : ControllerBase
+[ApiController]
+[Route("api/[controller]")]
+public class UploadController : ControllerBase
+{
+    private readonly IWebHostEnvironment _environment;
+
+    public UploadController(IWebHostEnvironment environment)
     {
-        private readonly IWebHostEnvironment _env;
-
-        public UploadController(IWebHostEnvironment env)
-        {
-            _env = env;
-        }
-    
-
-        [HttpPost]
-        public async Task<IActionResult> UploadImage(IFormFile image, [FromQuery] string? oldImageUrl = null)
-        {
-            if (image == null || image.Length == 0)
-                return BadRequest(new { error = "No file uploaded." });
-
-            var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
-            if (!Directory.Exists(uploadsDir))
-                Directory.CreateDirectory(uploadsDir);
-
-            // 🗑️ Delete old image if provided
-            if (!string.IsNullOrWhiteSpace(oldImageUrl))
-            {
-                try
-                {
-                    var oldFileName = Path.GetFileName(new Uri(oldImageUrl).AbsolutePath);
-                    var oldFilePath = Path.Combine(uploadsDir, oldFileName);
-                    if (System.IO.File.Exists(oldFilePath))
-                        System.IO.File.Delete(oldFilePath);
-                }
-                catch { /* silent fail */ }
-            }
-
-            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
-            var filePath = Path.Combine(uploadsDir, uniqueFileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await image.CopyToAsync(stream);
-            }
-
-            var imageUrl = $"{Request.Scheme}://{Request.Host}/uploads/{uniqueFileName}";
-            return Ok(new { imageUrl });
-        }
+        _environment = environment;
     }
+
+    [HttpPost]
+    public async Task<IActionResult> UploadImage(IFormFile image, [FromForm] string? oldImageUrl)
+    {
+        if (image == null || image.Length == 0)
+        {
+            return BadRequest("No image uploaded.");
+        }
+
+        // ✅ Get the uploads folder path safely
+        var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
+
+        if (!Directory.Exists(uploadsFolder))
+            Directory.CreateDirectory(uploadsFolder);
+
+        // ✅ Delete old image if a valid one was supplied
+        if (!string.IsNullOrEmpty(oldImageUrl))
+        {
+            var oldFileName = Path.GetFileName(oldImageUrl);
+            var oldFilePath = Path.Combine(uploadsFolder, oldFileName);
+
+            if (System.IO.File.Exists(oldFilePath))
+                System.IO.File.Delete(oldFilePath);
+        }
+
+        var newFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+        var newFilePath = Path.Combine(uploadsFolder, newFileName);
+
+        using (var stream = new FileStream(newFilePath, FileMode.Create))
+        {
+            await image.CopyToAsync(stream);
+        }
+
+        var relativeUrl = $"/uploads/{newFileName}";
+        return Ok(new { imageUrl = relativeUrl });
+    }
+}
 }
 
 

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SportifyApi.Data;
 using SportifyApi.Dtos;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
@@ -10,13 +12,16 @@ namespace SportifyApi.Controllers
     public class EventsController : ControllerBase
     {
         private readonly IEventService _eventService;
+        private readonly AppDbContext _context;
 
-        public EventsController(IEventService eventService)
+        // ✅ Single constructor (not duplicated)
+        public EventsController(IEventService eventService, AppDbContext context)
         {
             _eventService = eventService;
+            _context = context;
         }
 
-        // Create a new event
+        // ✅ Create a new event (admin or user)
         [HttpPost]
         public async Task<ActionResult<Event>> CreateEvent([FromBody] EventDto eventDto, [FromQuery] int userId)
         {
@@ -24,9 +29,10 @@ namespace SportifyApi.Controllers
             return CreatedAtAction(nameof(GetEventById), new { id = createdEvent.EventId }, createdEvent);
         }
 
-        // Get a specific event by ID
+        // ✅ Get event by ID with creator and participants
         [HttpGet("{id}")]
-        public async Task<ActionResult<Event>> GetEventById(int id)
+        public async Task<ActionResult<EventDto>> GetEventById(int id)
+
         {
             var evnt = await _eventService.GetEventByIdAsync(id);
             if (evnt == null)
@@ -34,15 +40,17 @@ namespace SportifyApi.Controllers
 
             return Ok(evnt);
         }
-        // Get all events
+
+        // ✅ Get all events with creators and participants
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
+        public async Task<ActionResult<IEnumerable<EventDto>>> GetAllEvents()
+
         {
             var events = await _eventService.GetAllEventsAsync();
             return Ok(events);
         }
 
-        //Update event
+        // ✅ Update an event
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, EventDto updatedEvent)
         {
@@ -53,7 +61,7 @@ namespace SportifyApi.Controllers
             return Ok(result);
         }
 
-        //Delete event
+        // ✅ Delete an event
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
@@ -62,6 +70,33 @@ namespace SportifyApi.Controllers
                 return NotFound("Event not found.");
 
             return NoContent();
+        }
+
+        // ✅ Get all events created by specific user (admin or user)
+        [HttpGet("created-by/{userId}")]
+        public async Task<ActionResult<IEnumerable<Event>>> GetEventsByCreator(int userId)
+        {
+            var events = await _eventService.GetEventsCreatedByUserAsync(userId);
+            return Ok(events);
+        }
+
+        // ✅ Get participants of a specific event
+        [HttpGet("{eventId}/participants")]
+        public async Task<IActionResult> GetEventParticipants(int eventId)
+        {
+            var participants = await _context.EventParticipants
+                .Where(p => p.EventId == eventId)
+                .Include(p => p.User)
+                .Select(p => new
+                {
+                    p.UserId,
+                    Name = p.User.Name,
+                    Email = p.User.Email,
+                    Status = p.Status
+                })
+                .ToListAsync();
+
+            return Ok(participants);
         }
     }
 }
