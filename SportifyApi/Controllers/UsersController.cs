@@ -4,6 +4,9 @@ using SportifyApi.Data;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
 using SportifyApi.Models;
+using OtpNet;
+using QRCoder;
+using System.IO;
 
 namespace SportifyApi.Controllers
 {
@@ -80,6 +83,18 @@ namespace SportifyApi.Controllers
                 return Unauthorized("Invalid email or password.");
             }
 
+            // 🔒 If 2FA is enabled, return a special response
+            if (user.IsTwoFactorEnabled)
+            {
+                return Ok(new
+                {
+                    Requires2FA = true,
+                    UserId = user.UserId,
+                    Email = user.Email
+                });
+            }
+
+            // ✅ Normal login flow
             var userDto = new UserDto
             {
                 UserId = user.UserId,
@@ -89,6 +104,78 @@ namespace SportifyApi.Controllers
             };
 
             return Ok(userDto);
+        }
+
+
+        // Add this to UsersController.cs
+
+        [HttpPut("{id}/toggle-2fa")]
+        public async Task<IActionResult> ToggleTwoFactor(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.IsTwoFactorEnabled = !user.IsTwoFactorEnabled;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { isTwoFactorEnabled = user.IsTwoFactorEnabled });
+        }
+
+        [HttpPost("verify-2fa")]
+        public async Task<IActionResult> Verify2FA([FromBody] Verify2faDto dto)
+        {
+            var user = await _context.Users.FindAsync(dto.UserId);
+            if (user == null || !user.IsTwoFactorEnabled || string.IsNullOrEmpty(user.TwoFactorSecret))
+                return Unauthorized("2FA not enabled for this user.");
+
+            // Decode the Base32 secret and initialize the TOTP
+            var secretBytes = Base32Encoding.ToBytes(user.TwoFactorSecret);
+            var totp = new Totp(secretBytes);
+
+            // Validate the 6-digit code
+            bool isValid = totp.VerifyTotp(dto.Code, out long _, VerificationWindow.RfcSpecifiedNetworkDelay);
+
+            if (!isValid)
+                return Unauthorized("Invalid 2FA code.");
+
+            return Ok("2FA verified successfully.");
+        }
+
+        [HttpPost("{id}/generate-2fa")]
+        public async Task<ActionResult<TwoFactorSetupDto>> GenerateTwoFactorSetup(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound("User not found.");
+
+            // 1. Generate a 20-byte random secret
+            var key = KeyGeneration.GenerateRandomKey(20);
+            var base32Secret = Base32Encoding.ToString(key);
+
+            // 2. Store the secret in the database
+            user.TwoFactorSecret = base32Secret;
+            await _context.SaveChangesAsync();
+
+            // 3. Create QR code URI compatible with Google Authenticator
+            string issuer = "Sportify";
+            string label = $"{issuer}:{user.Email}";
+            string otpAuthUri = $"otpauth://totp/{label}?secret={base32Secret}&issuer={issuer}";
+
+            // 4. Generate QR code image as Base64
+            using var qrGenerator = new QRCodeGenerator();
+            using var qrCodeData = qrGenerator.CreateQrCode(otpAuthUri, QRCodeGenerator.ECCLevel.Q);
+            var svgQrCode = new SvgQRCode(qrCodeData);
+            string svgImage = svgQrCode.GetGraphic(5);
+            string svgBase64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(svgImage));
+            string imageUrl = $"data:image/svg+xml;base64,{svgBase64}";
+
+            // 5. Return QR image and manual code
+            return Ok(new TwoFactorSetupDto
+            {
+                QrCodeImageUrl = imageUrl,
+                ManualEntryKey = base32Secret
+            });
         }
 
     }
