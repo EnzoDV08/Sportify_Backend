@@ -126,8 +126,10 @@ namespace SportifyApi.Controllers
         public async Task<IActionResult> Verify2FA([FromBody] Verify2faDto dto)
         {
             var user = await _context.Users.FindAsync(dto.UserId);
-            if (user == null || !user.IsTwoFactorEnabled || string.IsNullOrEmpty(user.TwoFactorSecret))
-                return Unauthorized("2FA not enabled for this user.");
+            if (user == null || string.IsNullOrEmpty(user.TwoFactorSecret))
+                return Unauthorized("User not found or 2FA not configured.");
+
+            // ✅ Even if IsTwoFactorEnabled is false, allow verification if a secret is still present
 
             // Decode the Base32 secret and initialize the TOTP
             var secretBytes = Base32Encoding.ToBytes(user.TwoFactorSecret);
@@ -141,6 +143,7 @@ namespace SportifyApi.Controllers
 
             return Ok("2FA verified successfully.");
         }
+
 
         [HttpPost("{id}/generate-2fa")]
         public async Task<ActionResult<TwoFactorSetupDto>> GenerateTwoFactorSetup(int id)
@@ -165,10 +168,11 @@ namespace SportifyApi.Controllers
             // 4. Generate QR code image as Base64
             using var qrGenerator = new QRCodeGenerator();
             using var qrCodeData = qrGenerator.CreateQrCode(otpAuthUri, QRCodeGenerator.ECCLevel.Q);
-            var svgQrCode = new SvgQRCode(qrCodeData);
-            string svgImage = svgQrCode.GetGraphic(5);
-            string svgBase64 = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(svgImage));
-            string imageUrl = $"data:image/svg+xml;base64,{svgBase64}";
+            using var qrCode = new PngByteQRCode(qrCodeData);
+            byte[] pngBytes = qrCode.GetGraphic(20); // Adjust pixel size if needed
+            string pngBase64 = Convert.ToBase64String(pngBytes);
+            string imageUrl = $"data:image/png;base64,{pngBase64}"; ;
+
 
             // 5. Return QR image and manual code
             return Ok(new TwoFactorSetupDto
@@ -177,6 +181,29 @@ namespace SportifyApi.Controllers
                 ManualEntryKey = base32Secret
             });
         }
+        
+        [HttpPost("disable-2fa")]
+        public async Task<IActionResult> Disable2FA([FromBody] Verify2faDto dto)
+        {
+            var user = await _context.Users.FindAsync(dto.UserId);
+            if (user == null || string.IsNullOrEmpty(user.TwoFactorSecret))
+                return Unauthorized("User not found or 2FA is not configured.");
+
+            var secretBytes = Base32Encoding.ToBytes(user.TwoFactorSecret);
+            var totp = new Totp(secretBytes);
+            bool isValid = totp.VerifyTotp(dto.Code, out long _, VerificationWindow.RfcSpecifiedNetworkDelay);
+
+            if (!isValid)
+                return Unauthorized("Invalid 2FA code.");
+
+            // ✅ Disable and wipe secret
+            user.IsTwoFactorEnabled = false;
+            user.TwoFactorSecret = null;
+            await _context.SaveChangesAsync();
+
+            return Ok("2FA disabled successfully.");
+        }
+
 
     }
 }

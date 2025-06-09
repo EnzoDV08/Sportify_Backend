@@ -9,5 +9,7 @@ namespace SportifyApi.DTOs
         public string Password { get; set; } = string.Empty;
 
         public string? UserType { get; set; } = "user";
+        public bool IsTwoFactorEnabled { get; set; } = false;
+        public string? TwoFactorSecret { get; set; }
     }
 }
