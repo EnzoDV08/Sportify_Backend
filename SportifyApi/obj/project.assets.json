@@ -817,7 +817,7 @@
       "Microsoft.Build.Locator/1.7.8": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {}
+          "lib/net6.0/Microsoft.Build.Locator.dll": {}
         },
         "runtime": {
           "lib/net6.0/Microsoft.Build.Locator.dll": {}
@@ -1303,8 +1303,11 @@
           "System.Text.Json": "7.0.3"
         },
         "compile": {
-          "lib/net7.0/_._": {
+          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll": {
             "related": ".pdb;.runtimeconfig.json;.xml"
+          },
+          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll": {
+            "related": ".BuildHost.pdb;.BuildHost.runtimeconfig.json;.BuildHost.xml;.pdb;.xml"
           }
         },
         "runtime": {
@@ -1518,7 +1521,7 @@
       "Microsoft.EntityFrameworkCore.Analyzers/9.0.5": {
         "type": "package"
       },
-      "Microsoft.EntityFrameworkCore.Design/9.0.4": {
+      "Microsoft.EntityFrameworkCore.Design/9.0.5": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -1527,16 +1530,16 @@
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.8.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.8.0",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
-          "Microsoft.Extensions.Caching.Memory": "9.0.4",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
-          "Microsoft.Extensions.DependencyModel": "9.0.4",
-          "Microsoft.Extensions.Logging": "9.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.5",
+          "Microsoft.Extensions.Caching.Memory": "9.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
+          "Microsoft.Extensions.DependencyModel": "9.0.5",
+          "Microsoft.Extensions.Logging": "9.0.5",
           "Mono.TextTemplating": "3.0.0",
-          "System.Text.Json": "9.0.4"
+          "System.Text.Json": "9.0.5"
         },
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
             "related": ".xml"
           }
         },
@@ -1549,12 +1552,12 @@
           "build/net8.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/9.0.4": {
+      "Microsoft.EntityFrameworkCore.InMemory/9.0.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.4",
-          "Microsoft.Extensions.Caching.Memory": "9.0.4",
-          "Microsoft.Extensions.Logging": "9.0.4"
+          "Microsoft.EntityFrameworkCore": "9.0.5",
+          "Microsoft.Extensions.Caching.Memory": "9.0.5",
+          "Microsoft.Extensions.Logging": "9.0.5"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
@@ -1567,13 +1570,13 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/9.0.4": {
+      "Microsoft.EntityFrameworkCore.Relational/9.0.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.4",
-          "Microsoft.Extensions.Caching.Memory": "9.0.4",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
-          "Microsoft.Extensions.Logging": "9.0.4"
+          "Microsoft.EntityFrameworkCore": "9.0.5",
+          "Microsoft.Extensions.Caching.Memory": "9.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
+          "Microsoft.Extensions.Logging": "9.0.5"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -1586,16 +1589,16 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/9.0.3": {
+      "Microsoft.EntityFrameworkCore.SqlServer/9.0.5": {
         "type": "package",
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.6",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.3",
-          "Microsoft.Extensions.Caching.Memory": "9.0.3",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Logging": "9.0.3",
-          "System.Formats.Asn1": "9.0.3",
-          "System.Text.Json": "9.0.3"
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.5",
+          "Microsoft.Extensions.Caching.Memory": "9.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
+          "Microsoft.Extensions.Logging": "9.0.5",
+          "System.Formats.Asn1": "9.0.5",
+          "System.Text.Json": "9.0.5"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -1608,10 +1611,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/9.0.3": {
+      "Microsoft.EntityFrameworkCore.Tools/9.0.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "9.0.3"
+          "Microsoft.EntityFrameworkCore.Design": "9.0.5"
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
@@ -1684,10 +1687,10 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.Abstractions/9.0.4": {
+      "Microsoft.Extensions.Configuration.Abstractions/9.0.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.4"
+          "Microsoft.Extensions.Primitives": "9.0.5"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
@@ -1738,7 +1741,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyModel/9.0.4": {
+      "Microsoft.Extensions.DependencyModel/9.0.5": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.Extensions.DependencyModel.dll": {
@@ -3382,7 +3385,7 @@
           }
         }
       },
-      "System.Formats.Asn1/9.0.3": {
+      "System.Formats.Asn1/9.0.5": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Formats.Asn1.dll": {
@@ -4453,7 +4456,7 @@
           }
         }
       },
-      "System.Text.Json/9.0.4": {
+      "System.Text.Json/9.0.5": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Text.Json.dll": {
@@ -7184,10 +7187,10 @@
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/9.0.4": {
-      "sha512": "0NdtmsbYfMr2HyF+W6L+kPaHJl1nAmFjWj0MfI5G+CFeWZxDwltQxzzwSmZQ4QhS5z8zjczGXwHZ8e3iFaoiXA==",
+    "Microsoft.EntityFrameworkCore.Design/9.0.5": {
+      "sha512": "xOVWCGRF8DpOIoZ196/g7bdghc2e7Fp6R2vZPKndWv8A64bSDSaS7F2CUoqZpmSphUeT+1HDRpNYFRBQd8H71g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/9.0.4",
+      "path": "microsoft.entityframeworkcore.design/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7196,14 +7199,14 @@
         "build/net8.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.9.0.4.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.9.0.5.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.InMemory/9.0.4": {
-      "sha512": "VHjUwjvN8UKjb8xtKJ/o+dc9tTeHOW3QzlfkzX3JrUspLkPIjwMdZCcw6eS4gsFjby0NFkcXBjHtrgTjVOfO5Q==",
+    "Microsoft.EntityFrameworkCore.InMemory/9.0.5": {
+      "sha512": "+nC0uyM5ztN3rV7yUraTlQhXZMV98MP1ZEn4OLlz4c0l5bOGbvHIcvsHA5RitzJTsP5UX/rwfpc3aOsTBS02jA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.inmemory/9.0.4",
+      "path": "microsoft.entityframeworkcore.inmemory/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7211,14 +7214,14 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.xml",
-        "microsoft.entityframeworkcore.inmemory.9.0.4.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.9.0.5.nupkg.sha512",
         "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/9.0.4": {
-      "sha512": "OjJ+xh/wQff5b0wiC3SPvoQqTA2boZeJQf+15+3+OJPtjBKzvxuwr25QRIu1p1t+K8ryQ8pzaoZ7eOpXfNzVGA==",
+    "Microsoft.EntityFrameworkCore.Relational/9.0.5": {
+      "sha512": "6eErbrZFd9yNnncemtDdmHZ3KC792OQCIYITuMsjK2oh4CLzlYo8mzNsozgUzQ+utHnne11/3eV8zMWbYF5Puw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/9.0.4",
+      "path": "microsoft.entityframeworkcore.relational/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7226,14 +7229,14 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.9.0.4.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.9.0.5.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/9.0.3": {
-      "sha512": "poKK0h5fldiBkpk/L/xq9Scd4FpnnZPj0SAKArnykqSMVJErd9iKtmCG5CjCpSPHrSdEyk8Uc4WUIWJ55i4JFg==",
+    "Microsoft.EntityFrameworkCore.SqlServer/9.0.5": {
+      "sha512": "Y4194uyqwMivN2ioKd7GYBFVeeG2kZFFC1ZCmOTvXy3G6Wd05ZVyUyR/3mB+SHCequMPt/DI4f58WMmVaOS6eg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/9.0.3",
+      "path": "microsoft.entityframeworkcore.sqlserver/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7241,21 +7244,21 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.9.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.9.0.5.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/9.0.3": {
-      "sha512": "c2kkyHhkop9WAbBWgm64apzPbzMeu0iKsRW3cn5kxSge0SQNxSlkAOtnO4L9dc8YwCAtFFyAZrxVFekxyvxKwQ==",
+    "Microsoft.EntityFrameworkCore.Tools/9.0.5": {
+      "sha512": "ZXWaG/tNZpgJUX8rFVEsgskuFzCvhQnQu8IkEEn4kAepYWpnUZa08vME289OYZ+bYfucH/uSVQi+rh6mOZtfVA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/9.0.3",
+      "path": "microsoft.entityframeworkcore.tools/9.0.5",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "docs/PACKAGE.md",
-        "microsoft.entityframeworkcore.tools.9.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.9.0.5.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -7570,10 +7573,10 @@
         "microsoft.extensions.configuration.nuspec"
       ]
     },
-    "Microsoft.Extensions.Configuration.Abstractions/9.0.4": {
-      "sha512": "0LN/DiIKvBrkqp7gkF3qhGIeZk6/B63PthAHjQsxymJfIBcz0kbf4/p/t4lMgggVxZ+flRi5xvTwlpPOoZk8fg==",
+    "Microsoft.Extensions.Configuration.Abstractions/9.0.5": {
+      "sha512": "ew0G6gIznnyAkbIa67wXspkDFcVektjN3xaDAfBDIPbWph+rbuGaaohFxUSGw28ht7wdcWtTtElKnzfkcDDbOQ==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.abstractions/9.0.4",
+      "path": "microsoft.extensions.configuration.abstractions/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7593,7 +7596,7 @@
         "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
-        "microsoft.extensions.configuration.abstractions.9.0.4.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.9.0.5.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -7658,10 +7661,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyModel/9.0.4": {
-      "sha512": "ACtnvl3H3M/f8Z42980JxsNu7V9PPbzys4vBs83ZewnsgKd7JeYK18OMPo0g+MxAHrpgMrjmlinXDiaSRPcVnA==",
+    "Microsoft.Extensions.DependencyModel/9.0.5": {
+      "sha512": "+jdJ9Vz+5Ia21l3KjahtmeHCIgQ7urfkdcJPxSfeqB40Jqryi27Lt4fKBmKyvc0YrfTUJ0cEB7QmoQRlU8FH0g==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/9.0.4",
+      "path": "microsoft.extensions.dependencymodel/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7681,7 +7684,7 @@
         "lib/net9.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.9.0.4.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.9.0.5.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -10231,10 +10234,10 @@
         "system.diagnostics.tracing.nuspec"
       ]
     },
-    "System.Formats.Asn1/9.0.3": {
-      "sha512": "UzVZ0mGzqvpe5fbG6RKA0pEOuLsELtc5OzSqmCS/lE5sqAyLKm2IiozCHbJRoA5+EO9Wq/bGFuroYQZsbAu/bA==",
+    "System.Formats.Asn1/9.0.5": {
+      "sha512": "GpMHKhuwUgnp1jKiZQ1slyAQnLp4HG2MgzCJ4u4oZEfi6aBzE3HOx01JFStaiC8dtJqsv0WlrGAWVixv8TEN1w==",
       "type": "package",
-      "path": "system.formats.asn1/9.0.3",
+      "path": "system.formats.asn1/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -10254,7 +10257,7 @@
         "lib/net9.0/System.Formats.Asn1.xml",
         "lib/netstandard2.0/System.Formats.Asn1.dll",
         "lib/netstandard2.0/System.Formats.Asn1.xml",
-        "system.formats.asn1.9.0.3.nupkg.sha512",
+        "system.formats.asn1.9.0.5.nupkg.sha512",
         "system.formats.asn1.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -12815,10 +12818,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/9.0.4": {
-      "sha512": "pYtmpcO6R3Ef1XilZEHgXP2xBPVORbYEzRP7dl0IAAbN8Dm+kfwio8aCKle97rAWXOExr292MuxWYurIuwN62g==",
+    "System.Text.Json/9.0.5": {
+      "sha512": "rnP61ZfloTgPQPe7ecr36loNiGX3g1PocxlKHdY/FUpDSsExKkTxpMAlB4X35wNEPr1X7mkYZuQvW3Lhxmu7KA==",
       "type": "package",
-      "path": "system.text.json/9.0.4",
+      "path": "system.text.json/9.0.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12881,7 +12884,7 @@
         "lib/net9.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.9.0.4.nupkg.sha512",
+        "system.text.json.9.0.5.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -13551,10 +13554,10 @@
       "Google.Apis.Auth >= 1.69.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.2",
       "Microsoft.EntityFrameworkCore >= 9.0.5",
-      "Microsoft.EntityFrameworkCore.Design >= 9.0.4",
-      "Microsoft.EntityFrameworkCore.InMemory >= 9.0.4",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
-      "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
+      "Microsoft.EntityFrameworkCore.Design >= 9.0.5",
+      "Microsoft.EntityFrameworkCore.InMemory >= 9.0.5",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.5",
+      "Microsoft.EntityFrameworkCore.Tools >= 9.0.5",
       "Microsoft.NET.Test.Sdk >= 17.13.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
       "Moq >= 4.20.72",
@@ -13570,11 +13573,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+      "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
       "projectName": "SportifyApi",
-      "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+      "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
       "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\obj\\",
+      "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -13628,24 +13631,20 @@
             "version": "[9.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
             "target": "Package",
-            "version": "[9.0.4, )"
+            "version": "[9.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
-            "version": "[9.0.4, )"
+            "version": "[9.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "[9.0.3, )"
+            "version": "[9.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
             "target": "Package",
-            "version": "[9.0.3, )"
+            "version": "[9.0.5, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",

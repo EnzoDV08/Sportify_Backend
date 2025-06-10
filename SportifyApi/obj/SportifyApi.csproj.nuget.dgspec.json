@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {}
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj": {
+    "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+        "projectUniqueName": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "projectName": "SportifyApi",
-        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\SportifyApi.csproj",
+        "projectPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\SportifyApi.csproj",
         "packagesPath": "C:\\Users\\enzod\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\sportifyapi\\obj\\",
+        "outputPath": "C:\\Users\\enzod\\Documents\\GitHub\\Sportify_Backend\\SportifyApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\enzod\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -65,24 +65,20 @@
               "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",

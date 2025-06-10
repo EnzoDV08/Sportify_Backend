@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SportifyApi.DTOs;
 using SportifyApi.Interfaces;
-
 namespace SportifyApi.Controllers
 {
     [ApiController]
