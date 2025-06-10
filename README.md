@@ -1,6 +1,6 @@
 ![Sportify Header Image](./ReadMEAssets/ReadMeFile.png)
-<br />
-
+<br>
+- - - 
 ![GitHub repo size](https://img.shields.io/github/repo-size/EnzoDV08/Sportify_Backend?color=%000000)
 ![GitHub watchers](https://img.shields.io/github/watchers/EnzoDV08/Sportify_Backend?color=%000000)
 ![GitHub language count](https://img.shields.io/github/languages/count/EnzoDV08/Sportify_Backend?color=%000000)
@@ -82,6 +82,18 @@ However, to use the project (e.g., frontend or other clients), you **must instal
 3. Install all dependencies:
    ```sh
    npm install
+4. Create a .env file in the root of your project and add the following environment variables:
+   ```sh
+   AIVEN_HOST=sportifyapi-sportifyapi.f.aivencloud.com
+   AIVEN_PORT=24496
+   AIVEN_DATABASE=defaultdb
+   AIVEN_USERNAME=avnadmin
+   AIVEN_PASSWORD=your_aiven_password_here
+   AIVEN_SSLMODE=Require
+   Note: The actual AIVEN_PASSWORD is not included for security reasons.
+   Please contact the project maintainer to request access credentials.
+
+⚠️ Keep your .env file private — do not commit it to version control.
 ## Features and Functionality
 
 - **AuthController** – Authentication with optional 2FA  
