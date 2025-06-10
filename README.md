@@ -108,7 +108,7 @@ However, to use the project (e.g., frontend or other clients), you **must instal
 
 ## Swagger Live Link 
  <a>
-    <img src="./SportifyApi/ReadmeAssets/Screenshot 2025-06-10 143459.png" >
+    <img src="../Sportify_Backend/SportifyApi/ReadmeAssets/Screenshot 2025-06-10 143459.png" >
   </a>
 
 [Swagger Live Link](sportify-backend-znri.onrender.com/swagger/index.html)
