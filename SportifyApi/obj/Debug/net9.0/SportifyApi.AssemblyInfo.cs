@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SportifyApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+319b9a03fc75fe3bd24c3b635d72c026e5442058")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52e04fdf3c488d0c27e021c539cf07a4d37d430b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SportifyApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SportifyApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
