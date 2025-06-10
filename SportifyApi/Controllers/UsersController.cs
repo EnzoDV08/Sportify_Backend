@@ -83,28 +83,19 @@ namespace SportifyApi.Controllers
                 return Unauthorized("Invalid email or password.");
             }
 
-            // 🔒 If 2FA is enabled, return a special response
-            if (user.IsTwoFactorEnabled)
-            {
-                return Ok(new
-                {
-                    Requires2FA = true,
-                    UserId = user.UserId,
-                    Email = user.Email
-                });
-            }
-
-            // ✅ Normal login flow
-            var userDto = new UserDto
+            // ✅ Unified response structure for both normal and 2FA-enabled accounts
+            var response = new
             {
                 UserId = user.UserId,
                 Name = user.Name,
                 Email = user.Email,
-                UserType = user.UserType
+                UserType = user.UserType,
+                IsTwoFactorEnabled = user.IsTwoFactorEnabled
             };
 
-            return Ok(userDto);
+            return Ok(response);
         }
+
 
 
         // Add this to UsersController.cs
@@ -129,20 +120,22 @@ namespace SportifyApi.Controllers
             if (user == null || string.IsNullOrEmpty(user.TwoFactorSecret))
                 return Unauthorized("User not found or 2FA not configured.");
 
-            // ✅ Even if IsTwoFactorEnabled is false, allow verification if a secret is still present
-
-            // Decode the Base32 secret and initialize the TOTP
             var secretBytes = Base32Encoding.ToBytes(user.TwoFactorSecret);
             var totp = new Totp(secretBytes);
 
-            // Validate the 6-digit code
             bool isValid = totp.VerifyTotp(dto.Code, out long _, VerificationWindow.RfcSpecifiedNetworkDelay);
 
             if (!isValid)
                 return Unauthorized("Invalid 2FA code.");
 
-            return Ok("2FA verified successfully.");
+            // ✅ Return necessary user info
+            return Ok(new {
+                userId = user.UserId,
+                userType = "user", // or user.UserType if you store it
+                message = "2FA verified successfully"
+            });
         }
+
 
 
         [HttpPost("{id}/generate-2fa")]
@@ -152,35 +145,37 @@ namespace SportifyApi.Controllers
             if (user == null)
                 return NotFound("User not found.");
 
-            // 1. Generate a 20-byte random secret
-            var key = KeyGeneration.GenerateRandomKey(20);
-            var base32Secret = Base32Encoding.ToString(key);
+            // ✅ 1. Only generate if the secret doesn't already exist
+            if (string.IsNullOrEmpty(user.TwoFactorSecret))
+            {
+                var key = KeyGeneration.GenerateRandomKey(20);
+                var base32Secret = Base32Encoding.ToString(key);
 
-            // 2. Store the secret in the database
-            user.TwoFactorSecret = base32Secret;
-            await _context.SaveChangesAsync();
+                user.TwoFactorSecret = base32Secret;
+                await _context.SaveChangesAsync();
+            }
 
-            // 3. Create QR code URI compatible with Google Authenticator
+            // ✅ 2. Use the existing secret (new or old)
+            var secret = user.TwoFactorSecret;
+
             string issuer = "Sportify";
             string label = $"{issuer}:{user.Email}";
-            string otpAuthUri = $"otpauth://totp/{label}?secret={base32Secret}&issuer={issuer}";
+            string otpAuthUri = $"otpauth://totp/{label}?secret={secret}&issuer={issuer}";
 
-            // 4. Generate QR code image as Base64
             using var qrGenerator = new QRCodeGenerator();
             using var qrCodeData = qrGenerator.CreateQrCode(otpAuthUri, QRCodeGenerator.ECCLevel.Q);
             using var qrCode = new PngByteQRCode(qrCodeData);
-            byte[] pngBytes = qrCode.GetGraphic(20); // Adjust pixel size if needed
+            byte[] pngBytes = qrCode.GetGraphic(20);
             string pngBase64 = Convert.ToBase64String(pngBytes);
-            string imageUrl = $"data:image/png;base64,{pngBase64}"; ;
+            string imageUrl = $"data:image/png;base64,{pngBase64}";
 
-
-            // 5. Return QR image and manual code
             return Ok(new TwoFactorSetupDto
             {
                 QrCodeImageUrl = imageUrl,
-                ManualEntryKey = base32Secret
+                ManualEntryKey = secret
             });
         }
+
         
         [HttpPost("disable-2fa")]
         public async Task<IActionResult> Disable2FA([FromBody] Verify2faDto dto)
