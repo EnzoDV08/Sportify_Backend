@@ -39,7 +39,7 @@ namespace SportifyApi.Controllers
                     Name = payload.Name ?? "Google User",
                     Email = payload.Email,
                     Password = "", // Leave empty or label as "google"
-                    UserType = "User"
+                    UserType = "user"
                 };
 
                 // Save the user (and auto-create profile)
@@ -57,7 +57,8 @@ namespace SportifyApi.Controllers
             return Ok(new
             {
                 user.UserId,
-                user.UserType
+                user.UserType,
+                isTwoFactorEnabled = user.IsTwoFactorEnabled
             });
         }
     }
