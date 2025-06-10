@@ -18,13 +18,16 @@ namespace SportifyApi.Services
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
         {
             return await _context.Users
-                .Select(u => new UserDto
-                {
-                    UserId = u.UserId,
-                    Name = u.Name,
-                    Email = u.Email
-                })
-                .ToListAsync();
+            .Select(u => new UserDto
+            {
+                UserId = u.UserId,
+                Name = u.Name,
+                Email = u.Email,
+                UserType = u.UserType,
+                IsTwoFactorEnabled = u.IsTwoFactorEnabled,
+                TwoFactorSecret = u.TwoFactorSecret
+            })
+            .ToListAsync();
         }
 
         public async Task<UserDto?> GetUserByIdAsync(int id)
@@ -36,7 +39,10 @@ namespace SportifyApi.Services
             {
                 UserId = user.UserId,
                 Name = user.Name,
-                Email = user.Email
+                Email = user.Email,
+                UserType = user.UserType,
+                IsTwoFactorEnabled = user.IsTwoFactorEnabled,
+                TwoFactorSecret = user.TwoFactorSecret
             };
         }
 

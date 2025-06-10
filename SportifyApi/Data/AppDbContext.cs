@@ -28,6 +28,11 @@ namespace SportifyApi.Data
             // ✅ Profile → Primary Key (UserId)
             modelBuilder.Entity<Profile>()
                 .HasKey(p => p.UserId);
+                
+            modelBuilder.Entity<User>()
+                .Property(u => u.IsTwoFactorEnabled)
+                .HasDefaultValue(false);
+        
 
             // ✅ Event ↔ Participants (many-to-one, navigates to Event.Participants)
             modelBuilder.Entity<EventParticipant>()
