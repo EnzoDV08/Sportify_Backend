@@ -57,7 +57,8 @@ namespace SportifyApi.Controllers
             return Ok(new
             {
                 user.UserId,
-                user.UserType
+                user.UserType,
+                isTwoFactorEnabled = user.IsTwoFactorEnabled
             });
         }
     }

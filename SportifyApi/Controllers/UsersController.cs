@@ -129,7 +129,8 @@ namespace SportifyApi.Controllers
                 return Unauthorized("Invalid 2FA code.");
 
             // ✅ Return necessary user info
-            return Ok(new {
+            return Ok(new
+            {
                 userId = user.UserId,
                 userType = "user", // or user.UserType if you store it
                 message = "2FA verified successfully"
@@ -176,7 +177,7 @@ namespace SportifyApi.Controllers
             });
         }
 
-        
+
         [HttpPost("disable-2fa")]
         public async Task<IActionResult> Disable2FA([FromBody] Verify2faDto dto)
         {
@@ -199,6 +200,25 @@ namespace SportifyApi.Controllers
             return Ok("2FA disabled successfully.");
         }
 
+        [HttpGet("email/{email}")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+                return NotFound();
+            return Ok(new { user.UserId, user.IsTwoFactorEnabled });
+        }
 
+        [HttpPost("{id}/reset-password")]
+        public async Task<IActionResult> ResetPassword(int id, [FromBody] ResetPasswordDto dto)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _context.SaveChangesAsync();
+            return Ok("Password reset successful.");
+        }
     }
 }
